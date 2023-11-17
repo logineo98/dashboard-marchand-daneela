@@ -1,0 +1,7 @@
+.layout_container {
+    @include h_w($h: 100vh, $w: 100%);
+    @include df();
+
+    @import './sidebar/sidebar';
+    @import './page_container/page_container';
+}

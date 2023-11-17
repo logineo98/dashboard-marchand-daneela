@@ -1,0 +1,58 @@
+// menu normal
+.menu_container {
+    margin-top: rem_calc(20);
+
+    .menu_name {
+        color: $main_black;
+        font-size: rem_calc(14);
+        padding-left: rem_calc(10);
+        margin-bottom: rem_calc(5);
+    }
+
+    .submenu_container {
+        .submenu {
+            .submenu_name_icon_container {
+                @include df($ai: center);
+                padding: rem_calc(10) rem_calc(10) rem_calc(10) rem_calc(20);
+
+                .submenu_icon {
+                    color: $main_black;
+                    transition: color 0.75s ease;
+                }
+
+                .submenu_name {
+                    color: $main_black;
+                    font-size: rem_calc(14);
+                    margin-left: rem_calc(10);
+                    transition: color 0.75s ease;
+                }
+
+                &:hover {
+
+                    .submenu_icon,
+                    .submenu_name {
+                        color: $tomato;
+                        transition: color 0.75s ease;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// sous menu active
+.menu_container {
+    .submenu_container {
+        .submenu {
+            .submenu_name_icon_container.active {
+                background-color: $main_black;
+
+                .submenu_icon,
+                .submenu_name {
+                    color: $white;
+                    transition: color 0.75s ease;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.auth_container {
+    background: url('../../../../../assets/images/bg_login.jpg');
+    background-size: cover;
+    background-position: center;
+    color: rgba($color: $black, $alpha: 0.7);
+    @include h_w($w: 100%);
+    min-height: 100vh;
+    @include df($ai: center, $jc: center);
+    padding: rem_calc(20) rem_calc(0);
+    overflow-y: auto;
+
+    &.signup {
+        background: $bg_color;
+    }
+
+    .auth {
+        background: $white;
+        max-width: 95%;
+        padding: rem_calc(24);
+        border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+        border-radius: rem_calc(10);
+
+        .auth_title {
+            font-size: rem_calc(28);
+            text-align: center;
+            margin-bottom: rem_calc(15);
+        }
+
+        .auth_info {
+            font-size: rem_calc(16);
+            text-align: center;
+            margin-bottom: rem_calc(15);
+        }
+    }
+}

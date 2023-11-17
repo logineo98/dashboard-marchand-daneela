@@ -1,0 +1,30 @@
+// importation utils
+@import './utils/variables';
+@import './utils/functions';
+@import './utils/faux_secteurs';
+@import './utils/mixins';
+@import './settings';
+
+// importation pages
+@import './pages/login';
+@import './pages/forget_password';
+@import './pages/signup';
+
+@import './pages/home';
+@import './pages/demande';
+@import './pages/modification';
+@import './pages/certification';
+@import './pages/promotion';
+@import './pages/forfait';
+@import './pages/commentaire';
+@import './pages/profile/profile';
+
+// importation components
+// card
+
+// common
+@import './components/common/layout/layout';
+@import './components/common/layout/auth/auth';
+@import './components/common/rating/rating';
+@import './components/common/switch/switch';
+@import './components/common/modal/modal';

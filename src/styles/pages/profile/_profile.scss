@@ -1,0 +1,86 @@
+.profile_container {
+    @include df($jc: space-between);
+
+    @import './about_shop';
+
+    .information_password_container {
+        @include h_w($w: 49%);
+
+        .information_password {
+            background: $white;
+            padding: rem_calc(10);
+            border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+            border-radius: rem_calc(5);
+            margin-bottom: rem_calc(15);
+
+            .information_password_title {
+                font-size: rem_calc(14);
+                margin-bottom: rem_calc(15);
+            }
+
+            .information_password_content {
+                color: rgba($color: $black, $alpha: 0.7);
+
+                // information generale
+                .information_generale {
+                    @include df($ai: center);
+                    font-size: rem_calc(12);
+                    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    border-bottom: none;
+
+                    &:last-child {
+                        border-bottom: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    }
+
+                    .information_generale_title {
+                        background: rgba($color: $black, $alpha: 0.1);
+                        @include h_w($w: 50%);
+                        font-weight: 500;
+                        padding: rem_calc(10);
+                        border-right: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    }
+
+                    .information_generale_value {
+                        @include h_w($w: 50%);
+                        padding: rem_calc(10);
+                        text-wrap: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                }
+
+                // modifier le mot de passe
+                .label_input_error_container {
+                    @include label_input_error_container;
+                }
+
+                // bouton modifier
+                .submit_btn_container {
+                    @include df($ai: center, $jc: flex-end);
+
+                    .submit_btn {
+                        @include btn($bg: $main_black);
+                        padding: rem_calc(12) rem_calc(20);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(1360)) {
+    .profile_container {
+        flex-direction: column;
+
+        .about_shop_container {
+            @include h_w($w: 100%);
+        }
+
+        .information_password_container {
+            @include h_w($w: 100%);
+        }
+    }
+}

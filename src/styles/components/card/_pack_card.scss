@@ -1,0 +1,98 @@
+.pack {
+    @include h_w($w: rem_calc(247));
+    color: rgba($color: $black, $alpha: 0.7);
+    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+    margin-bottom: rem_calc(15);
+
+    .pack_color {
+        @include h_w($h: rem_calc(10), $w: 100%);
+
+        &.first {
+            background: $pack_first_color;
+        }
+
+        &.second {
+            background: $pack_second_color;
+        }
+
+        &.third {
+            background: $pack_third_color;
+        }
+    }
+
+    .pack_name {
+        color: $main_black;
+        font-size: rem_calc(14);
+        padding: rem_calc(10);
+    }
+
+    .pack_options_container {
+        .pack_option {
+            @include df($ai: center);
+            border-top: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+            padding: rem_calc(5);
+
+            .pack_option_icon {}
+
+            .pack_option_name {
+                font-size: rem_calc(11);
+                margin-left: rem_calc(5);
+            }
+        }
+    }
+
+    .pack_lists_container {
+        border-top: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+
+        .pack_list_item {
+            font-size: rem_calc(11);
+            padding: rem_calc(5);
+        }
+    }
+
+    .pack_amount_month_container {
+        @include df($dir: column, $ai: center);
+        margin: rem_calc(15) rem_calc(0);
+
+        .pack_amount_name {
+            font-size: rem_calc(14);
+        }
+
+        .pack_amount_value {
+            font-size: rem_calc(15);
+            margin: rem_calc(10) rem_calc(0);
+        }
+
+        .pack_month_select_container {
+            background: transparent;
+            color: rgba($color: $black, $alpha: 0.7);
+            @include h_w($w: 60%);
+            padding: rem_calc(10);
+            font-size: rem_calc(12);
+            border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+            outline: none;
+            border-radius: rem_calc(5);
+
+            .pack_month_select {
+                color: rgba($color: $black, $alpha: 0.7);
+                font-size: rem_calc(12);
+            }
+
+            &:focus {
+                border: rem_calc(1) solid $main;
+                transition: border 0.5s ease;
+            }
+        }
+    }
+
+    .pack_check_container {
+        background: rgba($color: $black, $alpha: 0.1);
+        @include df($ai: center, $jc: center);
+        font-size: rem_calc(12);
+        padding: rem_calc(10);
+
+        .pack_check {
+            margin-right: rem_calc(5);
+        }
+    }
+}

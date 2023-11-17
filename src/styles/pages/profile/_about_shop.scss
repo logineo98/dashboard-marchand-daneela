@@ -1,0 +1,227 @@
+.about_shop_container {
+    @include h_w($w: 49%);
+    color: rgba($color: $black, $alpha: 0.7);
+
+    // information de la boutique, lien des reseaux sociaux, catégories et sous catégories
+    .about_shop {
+        background: $white;
+        border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+        border-radius: rem_calc(10);
+        margin-bottom: rem_calc(15);
+
+        .about_shop_title {
+            background: rgba($color: $black, $alpha: 0.1);
+            font-size: rem_calc(18);
+            text-transform: uppercase;
+            text-align: center;
+            padding: rem_calc(10);
+            border-top-left-radius: rem_calc(10);
+            border-top-right-radius: rem_calc(10);
+        }
+
+        .about_shop_content_container {
+            padding: rem_calc(15) rem_calc(10);
+
+            // information de la boutique et liens des reseaux sociaux
+            .label_input_error_container {
+                @include label_input_error_container;
+
+                .indicatif_tel_container {
+                    @include h_w($w: 100%);
+                    @include df($ai: center);
+
+                    ._select_container {
+                        @include input($w: 30%);
+                    }
+
+                    ._input {
+                        @include input($w: 70%);
+                    }
+                }
+            }
+
+            // switch
+            .switch_container_ {
+                @include df($ai: center);
+                margin-bottom: rem_calc(15);
+
+                &:last-child {
+                    margin-bottom: rem_calc(0);
+                }
+
+                .switch_title {
+                    font-size: rem_calc(12);
+                    margin-right: rem_calc(30);
+                }
+            }
+
+            // categories et sous categories
+            .category_container {
+                margin-bottom: rem_calc(15);
+
+                .category_title {
+                    font-size: rem_calc(14);
+                    text-transform: uppercase;
+                    margin-bottom: rem_calc(5);
+
+                    &.sub {
+                        font-size: rem_calc(12);
+                        text-transform: none;
+                    }
+                }
+
+                .category_content_container {
+                    @include df($ai: center);
+                    flex-wrap: wrap;
+                    padding: rem_calc(10);
+                    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    border-radius: rem_calc(5);
+
+                    @import '../../components/card/category_card.scss';
+                }
+            }
+        }
+    }
+
+    // fourchette et services supplementaires
+    .f_serv_sup_container {
+        margin-bottom: rem_calc(15);
+
+        .f_serv_sup_title {
+            font-size: rem_calc(14);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: rem_calc(5);
+        }
+
+        .f_serv_sup_content_container {
+            @include df($jc: space-between);
+            flex-wrap: wrap;
+
+            // fourchette de prix
+            .fourchette {
+                @include h_w($w: 45%);
+                @include df($ai: center, $jc: space-between);
+
+                .fourchette_label {
+                    @include h_w($w: 30%);
+                    font-size: rem_calc(12);
+                }
+
+                .fourchette_select_container {
+                    @include input($w: 70%);
+                }
+            }
+
+            // services supplementaires
+            // livraison
+            .liv_serv_ap_vente_container {
+                @include h_w($w: 50%);
+
+                .liv_serv_ap_vente_title {
+                    font-size: rem_calc(12);
+                    font-weight: 600;
+                    margin-bottom: rem_calc(5);
+                }
+
+                .liv_serv_ap_vente_content_container {
+                    .liv_serv_ap_vente_content {
+                        @include df($ai: center);
+                        margin-bottom: rem_calc(5);
+
+                        .liv_serv_ap_vente_content_title {
+                            font-size: rem_calc(10);
+                        }
+
+                        .liv_serv_ap_vente_content_radio_btn {
+                            margin-left: rem_calc(10);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // logo et image de couverture
+    .logo_bg_img_container {
+        .logo_bg_img {
+            @include df($dir: column, $ai: center);
+            margin-bottom: rem_calc(15);
+
+            .logo_bg_img_title {
+                font-size: rem_calc(12);
+                margin-bottom: rem_calc(5);
+            }
+
+            .logo_bg_img_content {
+                @include h_w($h: rem_calc(100), $w: rem_calc(100));
+                max-width: 100%;
+
+                &.bg {
+                    @include h_w($h: rem_calc(200), $w: rem_calc(400));
+                }
+
+                .logo_bg_img_content_img {
+                    @include image();
+                    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    border-radius: rem_calc(5);
+                }
+            }
+        }
+    }
+
+    // produit phare
+    .produit_phare_container {
+        @include df($dir: column, $ai: center);
+        margin-bottom: rem_calc(15);
+
+        .produit_phare_title {
+            font-size: rem_calc(12);
+            margin-bottom: rem_calc(5);
+        }
+
+        .produit_phare_content_container {
+            @include h_w($w: 100%);
+            @include df($ai: center, $jc: space-around);
+            flex-wrap: wrap;
+
+            .produit_phare_content {
+                @include h_w($h: rem_calc(150), $w: rem_calc(150));
+                object-fit: cover;
+                margin-right: rem_calc(5);
+                margin-bottom: rem_calc(5);
+                border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                border-radius: rem_calc(5);
+            }
+        }
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(520)) {
+    .about_shop_container {
+
+        // fourchette et services supplementaires
+        .f_serv_sup_container {
+            .f_serv_sup_content_container {
+
+                // fourchette de prix
+                .fourchette {
+                    @include h_w($w: 100%);
+                    margin-bottom: rem_calc(15);
+                }
+            }
+        }
+
+        // produit phare
+        .produit_phare_container {
+            @include df($dir: column, $ai: center);
+
+            .produit_phare_content_container {
+                flex-direction: column;
+            }
+        }
+    }
+}

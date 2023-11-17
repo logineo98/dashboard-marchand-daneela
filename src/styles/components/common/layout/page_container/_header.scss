@@ -1,0 +1,92 @@
+.header_container {
+    background: $white;
+    @include h_w($h: rem_calc(60), $w: 100%);
+    @include df($ai: center, $jc: space-between);
+    padding: rem_calc(0) rem_calc(24);
+    border-bottom: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+
+    .menu_burger {
+        display: none;
+    }
+
+    .site_name {
+        font-size: rem_calc(14);
+        font-weight: 600;
+    }
+
+    .acronyme_username_option_container {
+        border: none;
+        background: transparent;
+        position: relative;
+
+        .acronyme_username_container {
+            @include df($ai: center);
+            cursor: pointer;
+
+            .acronyme {
+                background: $main_black;
+                @include df($ai: center, $jc: center);
+                color: $white;
+                font-size: rem_calc(14);
+                text-transform: uppercase;
+                padding: rem_calc(8);
+                border-radius: 50%;
+            }
+
+            .username {
+                margin-left: rem_calc(5);
+                font-size: rem_calc(14);
+                text-transform: capitalize;
+                color: $main_black;
+            }
+        }
+
+        .option_container {
+            display: none;
+        }
+
+        &:focus {
+            .option_container {
+                display: inline-block;
+                background: $white;
+                @include h_w($w: rem_calc(150));
+                @include pos_abs_b_r($b: -rem_calc(0), $r: rem_calc(0));
+                border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                border-radius: rem_calc(5);
+
+                .option {
+                    @include df($ai: center);
+                    padding: rem_calc(10);
+                    cursor: pointer;
+                    border-radius: rem_calc(4);
+
+                    .option_icon {
+                        color: $black;
+                    }
+
+                    .option_name {
+                        color: rgba($color: $black, $alpha: 0.5);
+                        margin-left: rem_calc(10);
+                    }
+
+                    &:hover {
+                        background-color: rgba($color: $black, $alpha: 0.2);
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(915)) {
+    .header_container {
+        .menu_burger {
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+}

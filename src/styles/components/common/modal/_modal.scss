@@ -1,0 +1,76 @@
+.modal_global_container {
+    z-index: 5;
+    background: rgba($color: $black, $alpha: 0.4);
+    @include pos_abs_t_l;
+    @include h_w($h: 100vh, $w: 100%);
+    @include df($ai: center, $jc: center);
+
+    .modal_container {
+        z-index: 10;
+        background: $white;
+        @include df($dir: column, $jc: space-between);
+        max-height: 95%;
+        max-width: 95%;
+        padding: rem_calc(24);
+        border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+        border-radius: rem_calc(10);
+
+        // titre du modal
+        .modal_title {
+            @include h_w($w: 100%);
+            font-size: rem_calc(16);
+            font-weight: 600;
+            padding: rem_calc(7.5) rem_calc(0);
+        }
+
+        // contenu du modal
+        .modal_content_container {
+            @include h_w($h: calc(100% - (rem_calc(33) + rem_calc(40.5))), $w: 100%);
+            color: rgba($color: $black, $alpha: 0.7);
+            padding-right: rem_calc(10);
+            overflow-y: auto;
+
+            .modal_content {
+                margin-bottom: rem_calc(10);
+
+                &:last-child {
+                    margin-bottom: rem_calc(0);
+                }
+
+                .modal_content_title {
+                    font-size: rem_calc(15);
+                    margin-bottom: rem_calc(5);
+                }
+
+                .label_input_error_container {
+                    @include label_input_error_container;
+
+                    ._textarea {
+                        @include h_w($h: rem_calc(100), $w: 100%);
+                    }
+                }
+
+                .two_content_container {
+                    @include df($jc: space-between);
+
+                    .label_input_error_container {
+                        @include h_w($w: 48%);
+                        @include label_input_error_container;
+                    }
+                }
+            }
+        }
+
+        // bouton de fermeture du modal
+        .modal_close_container {
+            @include h_w($h: rem_calc(40), $w: 100%);
+            text-align: right;
+            margin-top: rem_calc(7.5);
+
+            .modal_close_btn {
+                @include btn();
+                padding: rem_calc(10) rem_calc(20);
+            }
+        }
+    }
+}

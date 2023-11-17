@@ -1,0 +1,50 @@
+.forfait_container {
+    background: $white;
+    @include h_w($w: rem_calc(800));
+    max-width: 100%;
+    padding: rem_calc(24);
+    margin: auto;
+    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+    border-radius: rem_calc(10);
+
+    .forfait {
+        color: rgba($color: $black, $alpha: 0.7);
+        margin-bottom: rem_calc(16);
+
+        .forfait_title {
+            font-size: rem_calc(18);
+            font-weight: 600;
+            margin-bottom: rem_calc(5);
+        }
+
+        .forfait_text {
+            font-size: rem_calc(12);
+            line-height: rem_calc(22);
+            text-align: justify;
+        }
+    }
+
+    .packs_container {
+        @include df($ai: center, $jc: space-around);
+        flex-wrap: wrap;
+
+        @import '../components/card/pack_card';
+    }
+
+    .validate_cancel_container {
+        @include df($ai: center, $jc: flex-end);
+
+        .cancel {
+            @include cancel_btn;
+        }
+
+        .validate {
+            @include validate_btn;
+        }
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(510)) {}

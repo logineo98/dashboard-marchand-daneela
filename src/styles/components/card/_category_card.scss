@@ -1,0 +1,14 @@
+.category {
+    font-size: rem_calc(12);
+    padding: rem_calc(10) rem_calc(15);
+    margin-right: rem_calc(10);
+    margin-bottom: rem_calc(10);
+    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+    border-radius: rem_calc(20);
+    cursor: pointer;
+
+    &.selected {
+        background: $tomato;
+        color: $white;
+    }
+}

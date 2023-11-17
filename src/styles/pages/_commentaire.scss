@@ -1,0 +1,72 @@
+.commentaire_container {
+    color: rgba($color: $black, $alpha: 0.7);
+
+    // commentaire header
+    .commentaire_header_container {
+        text-align: center;
+        border-bottom: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+
+        .commentaire_header_icon {
+            color: $main_black;
+        }
+
+        .commentaire_header_title {
+            font-size: rem_calc(14);
+            margin-bottom: rem_calc(10);
+        }
+
+        .commentaire_header_text {
+            font-size: rem_calc(14);
+            margin-bottom: rem_calc(15);
+        }
+    }
+
+    // résumé note client et commentaire et avis
+    .resume_commentaire_container {
+        padding: rem_calc(15) rem_calc(0);
+        border-bottom: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+
+        .resume_commentaire_title {
+            font-size: rem_calc(14);
+            margin-bottom: rem_calc(15);
+        }
+
+        .resume_commentaire_content_container {
+
+            // resumé des notes clients
+            .note_horiz_vert_container {
+                @include df($ai: center, $jc: space-between);
+
+                .note_horizontale_container {
+                    @include h_w($w: 70%);
+
+                    .note_horizontale {
+                        @include df($ai: center, $jc: space-between);
+
+                        .note_horizontale_value {
+                            display: inline-block;
+                            @include h_w($w: rem_calc(20));
+                            font-size: rem_calc(14);
+                        }
+
+                        .note_horizontale_progress {
+                            background: rgba($color: $black, $alpha: 0.1);
+                            @include h_w($h: rem_calc(14), $w: calc(100% - rem_calc(20)));
+                            border-radius: rem_calc(3);
+                        }
+                    }
+                }
+
+                .note_verticale_container {
+                    @include h_w($w: 25%);
+                    text-align: center;
+
+                    .note_verticale_value {
+                        font-size: rem_calc(36);
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

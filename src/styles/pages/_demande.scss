@@ -1,0 +1,30 @@
+.demande_container {
+    @include df($ai: center, $jc: space-around);
+    flex-wrap: wrap;
+
+    .demande {
+        background: $white;
+        @include h_w($h: rem_calc(100), $w: rem_calc(200));
+        @include df($dir: column, $ai: center, $jc: center);
+        padding: rem_calc(10);
+        margin-bottom: rem_calc(24);
+        border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+        border-radius: rem_calc(10);
+        transition: box-shadow 0.5s ease;
+
+        .demande_icon {
+            color: $main_black;
+            margin-bottom: rem_calc(5);
+        }
+
+        .demande_name {
+            color: $main_black;
+            font-size: rem_calc(12);
+            font-weight: 600;
+        }
+
+        &:hover {
+            box-shadow: rem_calc(1) rem_calc(1) rem_calc(10) rgba($color: $black, $alpha: 0.2);
+        }
+    }
+}

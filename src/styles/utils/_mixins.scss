@@ -1,0 +1,223 @@
+@mixin df($ai: flex-start, $jc: flex-start, $dir: row) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $ai;
+    justify-content: $jc;
+}
+
+@mixin h100_w100 {
+    height: 100%;
+    width: 100%;
+}
+
+@mixin h_w($h: auto, $w: auto) {
+    height: $h;
+    width: $w;
+}
+
+@mixin image($of: cover) {
+    @include h100_w100;
+    object-fit: $of;
+}
+
+// position fixed
+@mixin pos_fix_t_l($t: 0, $l: 0) {
+    position: fixed;
+
+    top: $t;
+    left: $l;
+}
+
+@mixin pos_fix_t_r($t: 0, $r: 0) {
+    position: fixed;
+
+    top: $t;
+    right: $r;
+}
+
+@mixin pos_fix_b_l($b: 0, $l: 0) {
+    position: fixed;
+
+    bottom: $b;
+    left: $l;
+}
+
+@mixin pos_fix_b_r($b: 0, $r: 0) {
+    position: fixed;
+
+    bottom: $b;
+    right: $r;
+}
+
+// position absolute
+@mixin pos_abs_t_l($t: 0, $l: 0) {
+    position: absolute;
+
+    top: $t;
+    left: $l;
+}
+
+@mixin pos_abs_t_r($t: 0, $r: 0) {
+    position: absolute;
+
+    top: $t;
+    right: $r;
+}
+
+@mixin pos_abs_b_l($b: 0, $l: 0) {
+    position: absolute;
+
+    bottom: $b;
+    left: $l;
+}
+
+@mixin pos_abs_b_r($b: 0, $r: 0) {
+    position: absolute;
+
+    bottom: $b;
+    right: $r;
+}
+
+// position sticky
+@mixin pos_sticky_t_l($t: 0, $l: 0) {
+    position: sticky;
+
+    top: $t;
+    left: $l;
+}
+
+@mixin pos_sticky_t_r($t: 0, $r: 0) {
+    position: sticky;
+
+    top: $t;
+    right: $r;
+}
+
+@mixin pos_sticky_b_l($b: 0, $l: 0) {
+    position: sticky;
+
+    bottom: $b;
+    left: $l;
+}
+
+@mixin pos_sticky_b_r($b: 0, $r: 0) {
+    position: sticky;
+
+    bottom: $b;
+    right: $r;
+}
+
+@mixin btn($bg: $main_black, $color: $white, $fz: rem_calc(12), $pd: rem_calc(10), $br: rem_calc(5)) {
+    border: none;
+    background: $bg;
+    color: $color;
+    font-size: $fz;
+    padding: $pd;
+    border-radius: $br;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+
+    &:hover {
+        opacity: 0.8;
+        transition: opacity 0.5s ease;
+    }
+}
+
+@mixin cancel_btn() {
+    background: rgba($color: $black, $alpha: 0.7);
+    color: $white;
+    font-size: rem_calc(12);
+    padding: rem_calc(10) rem_calc(20);
+    border-radius: rem_calc(5);
+}
+
+@mixin validate_btn() {
+    background: $main_black;
+    border: none;
+    color: $white;
+    font-size: rem_calc(12);
+    padding: rem_calc(10) rem_calc(20);
+    border-radius: rem_calc(5);
+    margin-left: rem_calc(10);
+    cursor: pointer;
+}
+
+@mixin input($w: 100%, $pd: rem_calc(10), $br: rem_calc(5)) {
+    @include h_w($w: $w);
+    outline: none;
+    padding: $pd;
+    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+    border-radius: $br;
+
+    &::placeholder {
+        color: rgba($color: $black, $alpha: 0.5);
+    }
+
+    &:focus {
+        border-color: $main;
+
+        &::placeholder {
+            padding-left: rem_calc(10);
+            transition: padding-left 0.5s ease;
+        }
+    }
+}
+
+@mixin label_input_error_container() {
+    @include df($dir: column);
+    margin-bottom: rem_calc(15);
+
+    &:last-child {
+        margin-bottom: rem_calc(0);
+    }
+
+    ._label {
+        font-size: rem_calc(12);
+        font-weight: 600;
+        margin-bottom: rem_calc(5);
+    }
+
+    ._input {
+        @include input();
+    }
+
+    ._select_container {
+        @include input();
+    }
+
+    ._textarea {
+        @include h_w($h: rem_calc(200), $w: 100%);
+        resize: none;
+        outline: none;
+        font-size: rem_calc(12);
+        text-align: justify;
+        padding: rem_calc(10);
+        border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+        border-top-left-radius: rem_calc(5);
+        border-bottom-left-radius: rem_calc(5);
+        overflow: auto;
+
+        &:focus {
+            border-color: $main;
+
+            &::placeholder {
+                padding-left: rem_calc(10);
+                transition: padding-left 0.5s ease;
+            }
+        }
+    }
+
+    .error_container {
+        @include df($dir: column);
+
+        .error {
+            color: $error_color;
+            font-size: rem_calc(10);
+        }
+    }
+
+    .image_slider {
+        @include h_w($h: rem_calc(100), $w: 100%);
+        object-fit: contain;
+    }
+}

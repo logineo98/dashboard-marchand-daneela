@@ -1,0 +1,19 @@
+.switch_container {
+    position: relative;
+    background: $main_black;
+    @include h_w($h: rem_calc(24), $w: rem_calc(55));
+    @include df($ai: center);
+    border-radius: rem_calc(24);
+    transition: justify-content 0.75s ease;
+
+    .switch {
+        background: $white;
+        @include h_w($h: rem_calc(24), $w: rem_calc(24));
+        border-radius: 50%;
+    }
+
+    &.active {
+        justify-content: flex-end;
+        transition: justify-content 0.75s ease;
+    }
+}

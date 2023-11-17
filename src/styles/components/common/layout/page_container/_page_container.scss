@@ -1,0 +1,21 @@
+.page_container {
+    background: $bg_color;
+    @include h_w($h: 100%, $w: calc(100% - rem_calc(345)));
+
+    @import './header';
+
+    .page_content_container {
+        @include h_w($h: calc(100% - rem_calc(60)), $w: 100%);
+        overflow-y: auto;
+        padding: rem_calc(24);
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(915)) {
+    .page_container {
+        width: 100%;
+    }
+}

@@ -1,0 +1,169 @@
+.promotion_container {
+    background: $white;
+    @include h_w($w: rem_calc(800));
+    max-width: 100%;
+    padding: rem_calc(24);
+    margin: auto;
+    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+    border-radius: rem_calc(10);
+
+    .promotion {
+        color: rgba($color: $black, $alpha: 0.7);
+        margin-bottom: rem_calc(16);
+
+        .promotion_title {
+            font-size: rem_calc(18);
+            font-weight: 600;
+            margin-bottom: rem_calc(5);
+        }
+
+        .promotion_text {
+            font-size: rem_calc(12);
+            line-height: rem_calc(22);
+            text-align: justify;
+        }
+
+        .promotion_list {
+            margin-left: rem_calc(10);
+            line-height: rem_calc(22);
+
+            .promotion_list_item {
+                font-size: rem_calc(12);
+            }
+        }
+
+        .promotion_duree_container {
+            @include df($ai: center, $jc: space-between);
+            flex-wrap: wrap;
+
+            .promotion_duree {
+                @include df($dir: column);
+                @include h_w($w: 49%);
+                color: rgba($color: $black, $alpha: 0.7);
+                margin-bottom: rem_calc(16);
+
+                .promotion_duree_title {
+                    font-size: rem_calc(12);
+                    margin-bottom: rem_calc(8);
+                }
+
+                .promotion_duree_select_container {
+                    background: transparent;
+                    color: rgba($color: $black, $alpha: 0.7);
+                    @include h_w($w: 100%);
+                    padding: rem_calc(10);
+                    font-size: rem_calc(12);
+                    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    outline: none;
+                    border-radius: rem_calc(5);
+
+                    .promotion_duree_select {
+                        color: rgba($color: $black, $alpha: 0.7);
+                        font-size: rem_calc(12);
+                    }
+
+                    &:focus {
+                        border: rem_calc(1) solid $main;
+                        transition: border 0.5s ease;
+                    }
+                }
+
+                .promotion_duree_date {
+                    color: rgba($color: $black, $alpha: 0.7);
+                    @include h_w($w: 100%);
+                    padding: rem_calc(10);
+                    font-size: rem_calc(12);
+                    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    outline: none;
+                    border-radius: rem_calc(5);
+
+                    &:focus {
+                        border: rem_calc(1) solid $main;
+                        transition: border 0.5s ease;
+                    }
+                }
+            }
+        }
+
+        .promotion_montant {
+            font-size: rem_calc(30);
+        }
+    }
+
+    .promotion_photo_couverture_container {
+        color: rgba($color: $black, $alpha: 0.7);
+        margin-bottom: rem_calc(16);
+
+        .choose_photo_couverture_container {
+            @include df($dir: column, $ai: center);
+
+            .choose_photo_couverture_text {
+                font-size: rem_calc(12);
+            }
+
+            .choose_photo_couverture_size {
+                display: inline-block;
+                font-size: rem_calc(10);
+                margin: rem_calc(5) rem_calc(0);
+            }
+
+            .choose_photo_couverture_btn {
+                background: $choose_photo_btn_bg_color;
+                color: $white;
+                font-size: rem_calc(12);
+                padding: rem_calc(14) rem_calc(25);
+                margin-bottom: rem_calc(15);
+                border-radius: rem_calc(5);
+                cursor: pointer;
+                transition: box-shadow 0.5s ease;
+
+                &:hover {
+                    box-shadow: rem_calc(5) rem_calc(5) rem_calc(10) rgba($color: $black, $alpha: 0.2);
+                }
+            }
+        }
+
+        .display_photo_container {
+            background: rgba($color: $black, $alpha: 0.1);
+            @include h_w($h: rem_calc(200), $w: rem_calc(400));
+            max-width: 100%;
+            @include df($ai: center, $jc: center);
+            border-radius: rem_calc(5);
+            margin: auto;
+
+            .display_photo_text {
+                font-size: rem_calc(12);
+            }
+        }
+    }
+
+    .validate_cancel_container {
+        @include df($ai: center, $jc: flex-end);
+
+        .cancel {
+            @include cancel_btn;
+        }
+
+        .validate {
+            @include validate_btn;
+        }
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(510)) {
+    .promotion_container {
+        .promotion {
+            .promotion_duree_container {
+                .promotion_duree {
+                    .promotion_duree_title {
+                        font-size: rem_calc(7);
+                        margin-bottom: rem_calc(8);
+                    }
+                }
+            }
+        }
+    }
+}

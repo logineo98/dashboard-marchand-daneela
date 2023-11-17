@@ -1,0 +1,886 @@
+[
+    {
+        "id": "1",
+        "name": "Alimentation",
+        "path": "/front/categorie/alimentations",
+        "children": [
+            {
+                "id": "1_1",
+                "name": "Produit laitier"
+            },
+            {
+                "id": "1_2",
+                "name": "Céreale"
+            },
+            {
+                "id": "1_3",
+                "name": "Boites de conserve"
+            },
+            {
+                "id": "1_4",
+                "name": "Eau et Boisson"
+            },
+            {
+                "id": "1_5",
+                "name": "Épice"
+            },
+            {
+                "id": "1_6",
+                "name": "Huile"
+            },
+            {
+                "id": "1_7",
+                "name": "Légumes frai"
+            },
+            {
+                "id": "1_8",
+                "name": "Charcuterie"
+            },
+            {
+                "id": "1_9",
+                "name": "Fruit"
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Fashion",
+        "path": "/front/categorie/fashion",
+        "children": [
+            {
+                "id": "2_1",
+                "name": "Chemise"
+            },
+            {
+                "id": "2_2",
+                "name": "Pantalon"
+            },
+            {
+                "id": "2_3",
+                "name": "T-Shirt"
+            },
+            {
+                "id": "2_4",
+                "name": "Culotte"
+            },
+            {
+                "id": "2_5",
+                "name": "Chaussure"
+            },
+            {
+                "id": "2_6",
+                "name": "Montres et  bracelet"
+            },
+            {
+                "id": "2_7",
+                "name": "Veste"
+            },
+            {
+                "id": "2_8",
+                "name": "Lunette"
+            },
+            {
+                "id": "2_9",
+                "name": "wax"
+            },
+            {
+                "id": "2_10",
+                "name": "Bazin"
+            },
+            {
+                "id": "2_11",
+                "name": "Tissu"
+            },
+            {
+                "id": "2_12",
+                "name": "Brodé"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Cosmétique",
+        "path": "/front/categorie/cosmetiques",
+        "children": [
+            {
+                "id": "3_1",
+                "name": "Parfum"
+            },
+            {
+                "id": "3_2",
+                "name": "Pommade"
+            },
+            {
+                "id": "3_3",
+                "name": "Vernis"
+            },
+            {
+                "id": "3_4",
+                "name": "Crayon"
+            },
+            {
+                "id": "3_5",
+                "name": "Faux ongle"
+            },
+            {
+                "id": "3_6",
+                "name": "Déodorant"
+            },
+            {
+                "id": "3_7",
+                "name": "Gels de douche"
+            },
+            {
+                "id": "3_8",
+                "name": "Lentille"
+            },
+            {
+                "id": "3_9",
+                "name": "Masque de visage"
+            },
+            {
+                "id": "3_10",
+                "name": "Mèche"
+            },
+            {
+                "id": "3_11",
+                "name": "Crème à lèvre "
+            },
+            {
+                "id": "3_12",
+                "name": "Maquillage"
+            },
+            {
+                "id": "3_13",
+                "name": "Produit bio"
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "name": "Hôtel/Auberge",
+        "path": "/front/categorie/hotels",
+        "children": [
+            {
+                "id": "4_1",
+                "name": "Hôtels de luxe"
+            },
+            {
+                "id": "4_2",
+                "name": "Hôtels pas cher"
+            },
+            {
+                "id": "4_3",
+                "name": "Hôtels à bas prix "
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "name": "Électronique",
+        "path": "/front/categorie/electroniques",
+        "children": [
+            {
+                "id": "5_1",
+                "name": "Téléphone mobile"
+            },
+            {
+                "id": "5_2",
+                "name": "Téléphone Fixe"
+            },
+            {
+                "id": "5_3",
+                "name": "Gadget"
+            },
+            {
+                "id": "5_4",
+                "name": "Électroménager"
+            },
+            {
+                "id": "5_5",
+                "name": "Pièces de rechange"
+            },
+            {
+                "id": "5_6",
+                "name": "Bricolages électronique"
+            },
+            {
+                "id": "5_7",
+                "name": "Marques populaires"
+            },
+            {
+                "id": "5_8",
+                "name": "Accessoires de téléphone"
+            },
+            {
+                "id": "5_9",
+                "name": "Coques et étuis populaires"
+            },
+            {
+                "id": "5_10",
+                "name": "Accessoires recommandés"
+            },
+            {
+                "id": "5_11",
+                "name": "Pièces de téléphone"
+            },
+            {
+                "id": "5_12",
+                "name": "Equipements"
+            },
+            {
+                "id": "5_13",
+                "name": "Composants et peripheriques"
+            },
+            {
+                "id": "5_14",
+                "name": "Ordinateurs portables"
+            },
+            {
+                "id": "5_15",
+                "name": "Sécurité et protection"
+            },
+            {
+                "id": "5_16",
+                "name": "Périphériques de stockage"
+            },
+            {
+                "id": "5_17",
+                "name": "Electronique de bureau"
+            },
+            {
+                "id": "5_18",
+                "name": "Réseaux"
+            },
+            {
+                "id": "5_19",
+                "name": "Accessoires et pièces"
+            },
+            {
+                "id": "5_20",
+                "name": "Audio et vidéo"
+            },
+            {
+                "id": "5_21",
+                "name": "Caméra et photo"
+            },
+            {
+                "id": "5_22",
+                "name": "Audio et vidéo portable"
+            },
+            {
+                "id": "5_23",
+                "name": "Electronique connectée"
+            },
+            {
+                "id": "5_24",
+                "name": "Jeux vidéo"
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "name": "Billetterie",
+        "path": "/front/categorie/billetteries",
+        "children": [
+            {
+                "id": "6_1",
+                "name": "Vol"
+            },
+            {
+                "id": "6_2",
+                "name": "Train"
+            },
+            {
+                "id": "6_3",
+                "name": "Bus"
+            },
+            {
+                "id": "6_4",
+                "name": "Livraison"
+            },
+            {
+                "id": "6_5",
+                "name": "Loterie"
+            },
+            {
+                "id": "6_6",
+                "name": "Cérémonie"
+            },
+            {
+                "id": "6_7",
+                "name": "Concert"
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "name": "Immobilier/Déco",
+        "path": "/front/categorie/immobiliers",
+        "children": [
+            {
+                "id": "7_1",
+                "name": "Villa"
+            },
+            {
+                "id": "7_2",
+                "name": "Immeuble"
+            },
+            {
+                "id": "7_3",
+                "name": "Appartement"
+            },
+            {
+                "id": "7_4",
+                "name": "Boutique"
+            },
+            {
+                "id": "7_6",
+                "name": "Terrain"
+            },
+            {
+                "id": "7_7",
+                "name": "Meubles de maison"
+            },
+            {
+                "id": "7_8",
+                "name": "Meubles de bureau"
+            },
+            {
+                "id": "7_9",
+                "name": "Arts, création et couture"
+            },
+            {
+                "id": "7_10",
+                "name": "Décoration "
+            },
+            {
+                "id": "7_11",
+                "name": "Textiles de maison"
+            },
+            {
+                "id": "7_12",
+                "name": "Célébrations"
+            },
+            {
+                "id": "7_13",
+                "name": "Rangement"
+            },
+            {
+                "id": "7_14",
+                "name": "Articles de maison"
+            },
+            {
+                "id": "7_15",
+                "name": "Cuisine"
+            },
+            {
+                "id": "7_16",
+                "name": "Jardin et animaux"
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "name": "Jeu",
+        "path": "/front/categorie/jeux",
+        "children": [
+            {
+                "id": "8_1",
+                "name": "Enfant"
+            },
+            {
+                "id": "8_2",
+                "name": "Adolescent"
+            },
+            {
+                "id": "8_3",
+                "name": "Adulte"
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "name": "Sport",
+        "path": "/front/categorie/sports",
+        "children": [
+            {
+                "id": "9_1",
+                "name": "Équipements de sport"
+            },
+            {
+                "id": "9_2",
+                "name": "Natation"
+            },
+            {
+                "id": "9_3",
+                "name": "Cylisme"
+            },
+            {
+                "id": "9_4",
+                "name": "Baskets"
+            },
+            {
+                "id": "9_5",
+                "name": "Peche"
+            },
+            {
+                "id": "9_6",
+                "name": "Tenues de sport"
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "name": "Supermarché",
+        "path": "/front/categorie/supermarches",
+        "children": [
+            {
+                "id": "10_1",
+                "name": "Alimentaire"
+            },
+            {
+                "id": "10_2",
+                "name": "Fashion"
+            },
+            {
+                "id": "10_3",
+                "name": "Cosmétique"
+            },
+            {
+                "id": "10_4",
+                "name": "Électronique"
+            },
+            {
+                "id": "10_5",
+                "name": "Hygiène domestique"
+            },
+            {
+                "id": "10_6",
+                "name": "Sport"
+            },
+            {
+                "id": "10_7",
+                "name": "Jeu"
+            }
+        ]
+    },
+    {
+        "id": "11",
+        "name": "Restaurations",
+        "path": "/front/categorie/restaurations",
+        "children": [
+            {
+                "id": "11_1",
+                "name": "Plats Africain "
+            },
+            {
+                "id": "11_2",
+                "name": "Fast-food"
+            }
+        ]
+    },
+    {
+        "id": "12",
+        "name": "Médecine",
+        "path": "/front/categorie/medecines",
+        "children": [
+            {
+                "id": "12_1",
+                "name": "Matériaux de médecine"
+            }
+        ]
+    },
+    {
+        "id": "13",
+        "name": "Quincaillerie",
+        "path": "/front/categorie/quincailleries",
+        "children": [
+            {
+                "id": "13_1",
+                "name": "Outillage à main"
+            },
+            {
+                "id": "13_2",
+                "name": "Outillage du plombier"
+            },
+            {
+                "id": "13_3",
+                "name": "Electroportatifs"
+            },
+            {
+                "id": "13_4",
+                "name": "Nettoyeur haute pression et aspirateur"
+            }
+        ]
+    },
+    {
+        "id": "14",
+        "name": "Véhicule",
+        "path": "/front/categorie/vehicules",
+        "children": [
+            {
+                "id": "14_1",
+                "name": "Location"
+            },
+            {
+                "id": "14_2",
+                "name": "Vente"
+            }
+        ]
+    },
+    {
+        "id": "15",
+        "name": "Internet",
+        "path": "/front/categorie/internets",
+        "children": [
+            {
+                "id": "15_1",
+                "name": "Fournisseurs d’accès internet"
+            }
+        ]
+    },
+    {
+        "id": "16",
+        "name": "Itech",
+        "path": "/front/categorie/itechs",
+        "children": [
+            {
+                "id": "16_1",
+                "name": "Hébergement web"
+            },
+            {
+                "id": "16_2",
+                "name": "Logiciel"
+            },
+            {
+                "id": "16_3",
+                "name": "E-marketing "
+            },
+            {
+                "id": "16_4",
+                "name": "Design & Multimedia"
+            }
+        ]
+    },
+    {
+        "id": "17",
+        "name": "Musique",
+        "path": "/front/categorie/musiques",
+        "children": [
+            {
+                "id": "17_1",
+                "name": "Musique"
+            }
+        ]
+    },
+    {
+        "id": "18",
+        "name": "Elearning",
+        "path": "/front/categorie/elearnings",
+        "children": [
+            {
+                "id": "18_1",
+                "name": "Apprenant"
+            },
+            {
+                "id": "18_2",
+                "name": "Entreprise"
+            },
+            {
+                "id": "18_3",
+                "name": "Université"
+            }
+        ]
+    },
+    {
+        "id": "19",
+        "name": "Agriculture",
+        "path": "/front/categorie/agricultures",
+        "children": [
+            {
+                "id": "19_1",
+                "name": "Céréale"
+            }
+        ]
+    },
+    {
+        "id": "20",
+        "name": "Expédition",
+        "path": "/front/categorie/expeditions",
+        "children": [
+            {
+                "id": "20_1",
+                "name": "Colis"
+            }
+        ]
+    },
+    {
+        "id": "21",
+        "name": "Mode Femme",
+        "path": "/front/categorie/mode-femme",
+        "children": [
+            {
+                "id": "21_1",
+                "name": "Mode Femme"
+            },
+            {
+                "id": "21_2",
+                "name": "Maillots de bains"
+            },
+            {
+                "id": "21_3",
+                "name": "Mode musulmane"
+            },
+            {
+                "id": "21_4",
+                "name": "Bas"
+            },
+            {
+                "id": "21_5",
+                "name": "Mode grand taille"
+            },
+            {
+                "id": "21_6",
+                "name": "Mariages et évenements"
+            },
+            {
+                "id": "21_7",
+                "name": "Lingerie"
+            },
+            {
+                "id": "21_8",
+                "name": "Accessoires"
+            }
+        ]
+    },
+    {
+        "id": "22",
+        "name": "Mode Homme",
+        "path": "/front/categorie/mode-homme",
+        "children": [
+            {
+                "id": "22_4",
+                "name": "Bas"
+            },
+            {
+                "id": "22_8",
+                "name": "Accessoires"
+            },
+            {
+                "id": "22_1",
+                "name": "Manteaux et Vestes"
+            },
+            {
+                "id": "22_2",
+                "name": "Sous vetements"
+            },
+            {
+                "id": "22_3",
+                "name": "Nouveautés et insolites"
+            }
+        ]
+    },
+    {
+        "id": "23",
+        "name": "Bijoux et montres",
+        "path": "/front/categorie/bijoux",
+        "children": [
+            {
+                "id": "23_1",
+                "name": "Bijouterie fine"
+            },
+            {
+                "id": "23_2",
+                "name": "Mariage et fiancailles"
+            },
+            {
+                "id": "23_3",
+                "name": "Montres homme "
+            },
+            {
+                "id": "23_4",
+                "name": "Montres femme"
+            },
+            {
+                "id": "23_5",
+                "name": "Bijoux à la mode"
+            },
+            {
+                "id": "23_6",
+                "name": "Perles et bijouterie artisanal"
+            }
+        ]
+    },
+    {
+        "id": "24",
+        "name": "Sacs et Chaussures",
+        "path": "/front/categorie/sacs-chaussures",
+        "children": [
+            {
+                "id": "24_1",
+                "name": "Bagages et sacs femme"
+            },
+            {
+                "id": "24_2",
+                "name": "Chaussures femme"
+            },
+            {
+                "id": "24_3",
+                "name": "Bagages et sacs homme"
+            },
+            {
+                "id": "24_4",
+                "name": "Chaussures homme"
+            },
+            {
+                "id": "24_5",
+                "name": "Autres sacs et accessoires"
+            },
+            {
+                "id": "24_6",
+                "name": "Chaussures populaires"
+            }
+        ]
+    },
+    {
+        "id": "25",
+        "name": "Jouets et Enfants",
+        "path": "/front/categorie/jouets-enfants",
+        "children": [
+            {
+                "id": "25_1",
+                "name": "Catégories populaires"
+            },
+            {
+                "id": "25_2",
+                "name": "Bébé (0 à 3 ans)"
+            },
+            {
+                "id": "25_3",
+                "name": "Fille"
+            },
+            {
+                "id": "25_4",
+                "name": "Garçon"
+            },
+            {
+                "id": "25_5",
+                "name": "Maternité et bébé"
+            },
+            {
+                "id": "25_6",
+                "name": "Jouets de construction"
+            },
+            {
+                "id": "25_7",
+                "name": "Jouets et loisirs"
+            }
+        ]
+    },
+    {
+        "id": "26",
+        "name": "Beauté, santé et cheveux",
+        "path": "/front/categorie/beaute-cheveux",
+        "children": [
+            {
+                "id": "26_1",
+                "name": "Mèches"
+            },
+            {
+                "id": "26_2",
+                "name": "Perruques"
+            },
+            {
+                "id": "26_3",
+                "name": "Cheveux synthétiques"
+            },
+            {
+                "id": "26_4",
+                "name": "Maquillage"
+            },
+            {
+                "id": "26_5",
+                "name": "Santé"
+            },
+            {
+                "id": "26_6",
+                "name": "Soins pour la peau "
+            },
+            {
+                "id": "26_7",
+                "name": "Manucure"
+            },
+            {
+                "id": "26_8",
+                "name": "Soins personnels"
+            },
+            {
+                "id": "26_9",
+                "name": "Massage et relaxation"
+            },
+            {
+                "id": "26_10",
+                "name": "Articles pour adultes"
+            }
+        ]
+    },
+    {
+        "id": "27",
+        "name": "Autos et Motos",
+        "path": "/front/categorie/autos-motos",
+        "children": [
+            {
+                "id": "27_1",
+                "name": "Pièces pour voiture"
+            },
+            {
+                "id": "27_2",
+                "name": "Outils et entretien"
+            },
+            {
+                "id": "27_3",
+                "name": "Electronique embarquée"
+            },
+            {
+                "id": "27_4",
+                "name": "Accessoirs d'exterieur"
+            },
+            {
+                "id": "27_5",
+                "name": "Pièces et accessoires moto"
+            },
+            {
+                "id": "27_6",
+                "name": "Accessoires d'interieur"
+            }
+        ]
+    },
+    {
+        "id": "28",
+        "name": "Outils et bricolage",
+        "path": "/front/categorie/outils-bricolage",
+        "children": [
+            {
+                "id": "28_1",
+                "name": "Outils"
+            },
+            {
+                "id": "28_2",
+                "name": "Eclairage d'interieur "
+            },
+            {
+                "id": "28_3",
+                "name": "Systèmes intelligents"
+            },
+            {
+                "id": "28_4",
+                "name": "Bricolage"
+            },
+            {
+                "id": "28_5",
+                "name": "Eclairage d'exterieur"
+            }
+        ]
+    }
+]

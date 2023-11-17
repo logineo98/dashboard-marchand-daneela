@@ -1,0 +1,219 @@
+.home_container {
+    @include df($jc: space-between);
+
+    .m_c_p_f_container {
+        @include h_w($w: 68%);
+        // padding: rem_calc(24) rem_calc(12) rem_calc(24) rem_calc(24);
+
+        .m_c_p_f {
+            background: $white;
+            margin-bottom: rem_calc(24);
+            border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+            border-radius: rem_calc(5);
+
+            // header
+            .m_c_p_f_header_container {
+                padding: rem_calc(10);
+                @include df($ai: center);
+
+                .m_c_p_f_header_icon {
+                    color: $black;
+                }
+
+                .m_c_p_f_header_name {
+                    color: $main_black;
+                    font-size: rem_calc(14);
+                    font-weight: 600;
+                    margin-left: rem_calc(5);
+                }
+            }
+
+            // menu
+            .m_c_p_f_menu_container {
+                @include df($ai: center);
+                padding: rem_calc(10);
+                border-top: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+
+                .m_c_p_f_menu_name,
+                .m_c_p_f_menu_action {
+                    color: rgba($color: $black, $alpha: 0.6);
+                    font-size: rem_calc(10);
+                    text-transform: uppercase;
+                }
+            }
+
+            // content
+            .m_c_p_f_content_container {
+                @include df($ai: center);
+                padding: rem_calc(10);
+                border-top: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+
+                .m_c_p_f_content_value {
+                    color: rgba($color: $black, $alpha: 0.6);
+                    font-size: rem_calc(12);
+                }
+
+                .eyes {
+                    color: $black;
+                    cursor: pointer;
+                }
+            }
+
+            // modification and certification
+            &.mod_cert {
+                .m_c_p_f_menu_container {
+                    .m_c_p_f_menu_name {
+                        flex-basis: 45%;
+                    }
+
+                    .m_c_p_f_menu_action {
+                        flex-basis: 10%;
+                    }
+                }
+
+                .m_c_p_f_content_container {
+                    .m_c_p_f_content_value {
+                        flex-basis: 45%;
+                    }
+                }
+            }
+
+            // promotion
+            &.promo {
+                .m_c_p_f_menu_container {
+                    .m_c_p_f_menu_name {
+                        flex-basis: 30%;
+                    }
+
+                    .m_c_p_f_menu_action {
+                        flex-basis: 10%;
+                    }
+                }
+
+                .m_c_p_f_content_container {
+                    .m_c_p_f_content_value {
+                        flex-basis: 30%;
+                    }
+                }
+            }
+
+            // forfait
+            &.forfait {
+                .m_c_p_f_menu_container {
+                    .m_c_p_f_menu_name {
+                        flex-basis: 22.5%;
+                    }
+
+                    .m_c_p_f_menu_action {
+                        flex-basis: 10%;
+                    }
+                }
+
+                .m_c_p_f_content_container {
+                    .m_c_p_f_content_value {
+                        flex-basis: 22.5%;
+                    }
+                }
+            }
+        }
+    }
+
+    .notification_container {
+        @include h_w($w: 30%);
+        // padding: rem_calc(24) rem_calc(24) rem_calc(24) rem_calc(12);
+
+        .notification_header_container {
+            background: $main_black;
+            @include df($ai: center);
+            padding: rem_calc(10);
+            border-top-left-radius: rem_calc(5);
+            border-top-right-radius: rem_calc(5);
+
+            .notification_header_icon {
+                color: $white;
+            }
+
+            .notification_header_name {
+                color: $white;
+                font-size: rem_calc(14);
+                font-weight: 600;
+                margin-left: rem_calc(5);
+            }
+        }
+
+        .notification_content_container {
+            background: $white;
+            border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+            padding: rem_calc(10);
+            border-bottom-left-radius: rem_calc(5);
+            border-bottom-right-radius: rem_calc(5);
+
+            .notification_content {
+                @include df($ai: center);
+                padding: rem_calc(10) rem_calc(5);
+                border-radius: rem_calc(5);
+                cursor: pointer;
+
+                .notification_content_name {
+                    color: $main_black;
+                    font-size: rem_calc(12);
+                }
+
+                .notification_content_value {
+                    background: $success_color;
+                    color: $white;
+                    font-size: rem_calc(12);
+                    font-weight: 600;
+                    padding: rem_calc(5) rem_calc(10);
+                    margin-left: rem_calc(10);
+                    border-radius: rem_calc(5);
+                }
+
+                &:hover {
+                    background-color: rgba($color: $black, $alpha: 0.2);
+                }
+            }
+        }
+    }
+}
+
+/************************************************
+RESPONSIVE
+*************************************************/
+@media only screen and (max-width: rem_calc(570)) {
+    .home_container {
+        flex-direction: column;
+
+        .m_c_p_f_container {
+            width: 100%;
+
+            .m_c_p_f {
+
+                // content
+                .m_c_p_f_content_container {
+                    .m_c_p_f_content_value {
+                        font-size: rem_calc(7);
+                    }
+                }
+            }
+        }
+
+        .notification_container {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: rem_calc(571))and (max-width:rem_calc(1160)) {
+    .home_container {
+        flex-direction: column;
+
+        .m_c_p_f_container {
+            width: 100%;
+        }
+
+        .notification_container {
+            width: 100%;
+        }
+    }
+}
