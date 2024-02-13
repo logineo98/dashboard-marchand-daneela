@@ -1,14 +1,17 @@
 import React from 'react'
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 // my importations
 import { routeConnected, routeNotConnected } from '../../utils/routes'
 import Layout from '../../components/common/layout/Layout'
+import { ROOT_REDUCER_TYPE } from '../../redux/store'
 
 const RouterIndex = () => {
-    let connected = true
+    let { connected } = useSelector((state: ROOT_REDUCER_TYPE) => state.admin)
+    // connected = true
 
     return (
-        <Router basename='/marchand'>
+        <Router>
             <Routes>
                 {connected ?
                     <Route path='/*'
@@ -20,7 +23,11 @@ const RouterIndex = () => {
                                 </Routes>
                             </Layout>
                         }
-                    /> : routeNotConnected.map((route, i) => <Route key={i} path={route.path} element={<route.Element />} />)
+                    /> :
+                    <>
+                        {routeNotConnected.map((route, i) => <Route key={i} path={route.path} element={<route.Element />} />)}
+                        <Route path='*' element={<Navigate to='/' />} />
+                    </>
                 }
             </Routes>
         </Router>

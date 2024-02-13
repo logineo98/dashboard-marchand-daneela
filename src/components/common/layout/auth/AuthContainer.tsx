@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 type COMPONENT_TYPE = {
-    children: JSX.Element | JSX.Element[]
+    children: React.ReactNode
     title: string
     info: string
     signup?: boolean

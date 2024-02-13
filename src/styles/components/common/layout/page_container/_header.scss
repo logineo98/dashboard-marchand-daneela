@@ -25,6 +25,7 @@
 
             .acronyme {
                 background: $main_black;
+                @include h_w($h: rem_calc(35), $w: rem_calc(35));
                 @include df($ai: center, $jc: center);
                 color: $white;
                 font-size: rem_calc(14);

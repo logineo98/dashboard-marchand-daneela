@@ -1,10 +1,12 @@
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+// my importations
+import { ROOT_REDUCER_TYPE } from '../../../../redux/store'
 // my icons
 import { AiOutlineMenu } from 'react-icons/ai'
-import { FaRegUser } from 'react-icons/fa'
 import { FiLogOut } from 'react-icons/fi'
-
+import { FaRegUser } from 'react-icons/fa'
 
 type COMPONENT_TYPE = {
     page_name: string
@@ -14,6 +16,8 @@ const Header: FC<COMPONENT_TYPE> = (props) => {
     const { page_name } = props
 
     const navigate = useNavigate()
+
+    const { marchand } = useSelector((state: ROOT_REDUCER_TYPE) => state.marchand)
 
     const handleDisplaySidebar = () => {
         const sidebar = document.querySelector('.sidebar_container')!
@@ -29,8 +33,8 @@ const Header: FC<COMPONENT_TYPE> = (props) => {
 
             <button className='acronyme_username_option_container'>
                 <div className='acronyme_username_container'>
-                    <span className='acronyme'>tz</span>
-                    <span className='username'>mail</span>
+                    <span className='acronyme'>{marchand?.store.name[0]}{marchand?.store.name[1]}</span>
+                    <span className='username'>{marchand?.store.name}</span>
                 </div>
 
                 <div className='option_container'>
@@ -38,7 +42,7 @@ const Header: FC<COMPONENT_TYPE> = (props) => {
                         <FaRegUser className='option_icon' />
                         <span className='option_name'>Profil</span>
                     </div>
-                    <div className='option'>
+                    <div className='option' onClick={() => { localStorage.clear(); window.location.href = '/' }}>
                         <FiLogOut className='option_icon' />
                         <span className='option_name'>Déconnexion</span>
                     </div>

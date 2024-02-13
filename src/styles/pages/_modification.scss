@@ -107,6 +107,16 @@
 
                         @import '../components/card/category_card';
                     }
+
+                    .error_container {
+                        @include df($dir: column);
+                        margin-bottom: rem_calc(15);
+
+                        .error {
+                            color: $error_color;
+                            font-size: rem_calc(10);
+                        }
+                    }
                 }
             }
         }
@@ -310,12 +320,13 @@
                 @include h_w($w: 100%);
 
                 .produit_phare_content {
-                    @include df($ai: center, $jc: space-around);
+                    @include df($jc: space-around);
                     flex-wrap: wrap;
 
                     .produit_phare {
                         margin-right: rem_calc(5);
                         margin-bottom: rem_calc(5);
+                        @include df($dir: column, $ai: center);
 
                         // choisir la photo
                         .produit_phare_choose_img {
@@ -346,6 +357,18 @@
                                 font-size: rem_calc(12);
                                 border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
                                 border-radius: rem_calc(5);
+                            }
+                        }
+
+                        // erreur des images des produits phares
+                        .error_container {
+                            margin-top: rem_calc(5);
+                            @include df($dir: column);
+                            margin-bottom: rem_calc(15);
+
+                            .error {
+                                color: $error_color;
+                                font-size: rem_calc(10);
                             }
                         }
                     }

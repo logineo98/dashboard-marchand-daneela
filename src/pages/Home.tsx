@@ -1,21 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 // my importations
 import PageContainer from '../components/common/layout/page_container/PageContainer'
 import { page_home } from '../utils/page_name'
-import Modal from '../components/common/modal/Modal'
+import { ROOT_REDUCER_TYPE } from '../redux/store'
+import { _getAllCertifications } from '../redux/actions/certification.action'
+import CertificationCard from '../components/card/home/CertificationCard'
+import Loading from '../components/common/loading/Loading'
+import { _getAllForfaits } from '../redux/actions/forfait.action'
+import ForfaitCard from '../components/card/home/ForfaitCard'
+import { _getAllPromotions } from '../redux/actions/promotion.action'
+import { _getAllModifications } from '../redux/actions/modification.action'
+import PromotionCard from '../components/card/home/PromotionCard'
+import ModificationCard from '../components/card/home/ModificationCard'
 // my icons
 import { AiFillCreditCard } from 'react-icons/ai'
 import { FaCertificate, FaGift } from 'react-icons/fa'
-import { IoEyeSharp } from 'react-icons/io5'
 import { MdEdit, MdNotifications } from 'react-icons/md'
-// my images
-import logo from '../assets/images/logo.png'
+
 
 const Home = () => {
+    const { marchand } = useSelector((state: ROOT_REDUCER_TYPE) => state.marchand)
+    const { loadingModification, allModifications } = useSelector((state: ROOT_REDUCER_TYPE) => state.modification)
+    const { loadingCertification, allCertifications } = useSelector((state: ROOT_REDUCER_TYPE) => state.certification)
+    const { loadingPromotion, allPromotions } = useSelector((state: ROOT_REDUCER_TYPE) => state.promotion)
+    const { loadingForfait, allForfaits } = useSelector((state: ROOT_REDUCER_TYPE) => state.forfait)
+    const dispatch = useDispatch<any>()
 
-    const [openModificationModal, setOpenModificationModal] = useState(false)
-    const [openPromotionModal, setOpenPromotionModal] = useState(false)
-    const [openForfaitModal, setOpenForfaitModal] = useState(false)
+    useEffect(() => {
+        marchand && dispatch(_getAllModifications(marchand.store.id))
+        marchand && dispatch(_getAllCertifications(marchand.store.id))
+        marchand && dispatch(_getAllPromotions(marchand.store.id))
+        marchand && dispatch(_getAllForfaits(marchand.store.id))
+    }, [dispatch, marchand])
 
     return (
         <PageContainer page_name={page_home}>
@@ -32,22 +49,12 @@ const Home = () => {
                             <span className='m_c_p_f_menu_name'>Statut</span>
                             <span className='m_c_p_f_menu_action'></span>
                         </div>
-                        <div className='m_c_p_f_content_container'>
-                            <span className='m_c_p_f_content_value'>06/11/2023 à 11:47</span>
-                            <span className='m_c_p_f_content_value'>Défaut</span>
-                            <IoEyeSharp className='eyes' size={14} onClick={() => setOpenModificationModal(true)} />
-                            {/* modal */}
-                            {openModificationModal &&
-                                <Modal title={`Modification d'information`} setOpenModal={setOpenModificationModal}>
-                                    <div className='modal_content'>
-                                        <div className='label_input_error_container'>
-                                            <label htmlFor='motif' className='_label'>Motif *</label>
-                                            <textarea name='motif' id='motif' placeholder='Motif' disabled className='_textarea'></textarea>
-                                        </div>
-                                    </div>
-                                </Modal>
-                            }
-                        </div>
+                        {loadingModification ?
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Loading />
+                            </div> :
+                            allModifications.length > 0 && allModifications.map(modification => <ModificationCard key={modification.id} modification={modification} />)
+                        }
                     </div>
                     {/* certification */}
                     <div className='m_c_p_f mod_cert'>
@@ -60,11 +67,12 @@ const Home = () => {
                             <span className='m_c_p_f_menu_name'>Statut</span>
                             <span className='m_c_p_f_menu_action'></span>
                         </div>
-                        <div className='m_c_p_f_content_container'>
-                            <span className='m_c_p_f_content_value'>06/11/2023 à 11:47</span>
-                            <span className='m_c_p_f_content_value'>Défaut</span>
-                            <IoEyeSharp className='eyes' size={14} />
-                        </div>
+                        {loadingCertification ?
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Loading />
+                            </div> :
+                            allCertifications.length > 0 && allCertifications.map(certification => <CertificationCard key={certification.id} certification={certification} />)
+                        }
                     </div>
                     {/* promotions */}
                     <div className='m_c_p_f promo'>
@@ -78,42 +86,12 @@ const Home = () => {
                             <span className='m_c_p_f_menu_name'>Montant(fcfa)</span>
                             <span className='m_c_p_f_menu_action'></span>
                         </div>
-                        <div className='m_c_p_f_content_container'>
-                            <span className='m_c_p_f_content_value'>06/11/2023 à 11:47</span>
-                            <span className='m_c_p_f_content_value'>Défaut</span>
-                            <span className='m_c_p_f_content_value'>140000</span>
-                            <IoEyeSharp className='eyes' size={14} onClick={() => setOpenPromotionModal(true)} />
-                            {/* modal */}
-                            {openPromotionModal &&
-                                <Modal title={`Promotion`} setOpenModal={setOpenPromotionModal}>
-                                    <div className='modal_content'>
-                                        <h2 className='modal_content_title'>Image du slider</h2>
-                                        <div className='label_input_error_container'>
-                                            <img src={logo} alt='image_du_slider' className='image_slider' />
-                                        </div>
-                                    </div>
-                                    <div className='modal_content'>
-                                        <h2 className='modal_content_title'>Durée</h2>
-                                        <div className='two_content_container'>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='debut' className='_label'>Début *</label>
-                                                <input type='date' name='debut' id='debut' disabled className='_input' />
-                                            </div>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='fin' className='_label'>Fin *</label>
-                                                <input type='date' name='fin' id='fin' disabled className='_input' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='modal_content'>
-                                        <div className='label_input_error_container'>
-                                            <label htmlFor='motif' className='_label'>Motif *</label>
-                                            <textarea name='motif' id='motif' placeholder='Motif' disabled className='_textarea'></textarea>
-                                        </div>
-                                    </div>
-                                </Modal>
-                            }
-                        </div>
+                        {loadingPromotion ?
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Loading />
+                            </div> :
+                            allPromotions.length > 0 && allPromotions.map(promotion => <PromotionCard key={promotion.id} promotion={promotion} />)
+                        }
                     </div>
                     {/* forfait */}
                     <div className='m_c_p_f forfait'>
@@ -128,62 +106,12 @@ const Home = () => {
                             <span className='m_c_p_f_menu_name'>Montant</span>
                             <span className='m_c_p_f_menu_action'></span>
                         </div>
-                        <div className='m_c_p_f_content_container'>
-                            <span className='m_c_p_f_content_value'>06/11/2023 à 11:47</span>
-                            <span className='m_c_p_f_content_value'>Défaut</span>
-                            <span className='m_c_p_f_content_value'>GOLD</span>
-                            <span className='m_c_p_f_content_value'>140000</span>
-                            <IoEyeSharp className='eyes' size={14} onClick={() => setOpenForfaitModal(true)} />
-                            {/* modal */}
-                            {openForfaitModal &&
-                                <Modal title={`Forfait`} setOpenModal={setOpenForfaitModal}>
-                                    <div className='modal_content'>
-                                        <h2 className='modal_content_title'>Durée</h2>
-                                        <div className='two_content_container'>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='duree' className='_label'>Durée</label>
-                                                <input type='text' name='duree' id='duree' placeholder='Durée' disabled className='_input' />
-                                            </div>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='montant' className='_label'>Montant</label>
-                                                <input type='number' name='montant' id='montant' placeholder='Montant' disabled className='_input' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='modal_content'>
-                                        <div className='two_content_container'>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='debut' className='_label'>Début *</label>
-                                                <input type='date' name='debut' id='debut' disabled className='_input' />
-                                            </div>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='fin' className='_label'>Fin *</label>
-                                                <input type='date' name='fin' id='fin' disabled className='_input' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='modal_content'>
-                                        <h2 className='modal_content_title'>Coordonnées GPS</h2>
-                                        <div className='two_content_container'>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='latitude' className='_label'>Latitude *</label>
-                                                <input type='text' name='latitude' id='latitude' placeholder='Latitude' disabled className='_input' />
-                                            </div>
-                                            <div className='label_input_error_container'>
-                                                <label htmlFor='longitude' className='_label'>Longitude *</label>
-                                                <input type='text' name='longitude' id='longitude' placeholder='Longitude' disabled className='_input' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='modal_content'>
-                                        <div className='label_input_error_container'>
-                                            <label htmlFor='motif' className='_label'>Motif *</label>
-                                            <textarea name='motif' id='motif' placeholder='Motif' disabled className='_textarea'></textarea>
-                                        </div>
-                                    </div>
-                                </Modal>
-                            }
-                        </div>
+                        {loadingForfait ?
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Loading />
+                            </div> :
+                            allForfaits.length > 0 && allForfaits.map(forfait => <ForfaitCard key={forfait.id} forfait={forfait} />)
+                        }
                     </div>
                 </div>
 

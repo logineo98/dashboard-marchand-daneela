@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Bamako"
+    },
+    {
+        "id": 2,
+        "name": "Kayes"
+    },
+    {
+        "id": 3,
+        "name": "Koulikoro"
+    },
+    {
+        "id": 4,
+        "name": "Sikasso"
+    },
+    {
+        "id": 5,
+        "name": "Ségou"
+    },
+    {
+        "id": 6,
+        "name": "Mopti"
+    },
+    {
+        "id": 7,
+        "name": "Gao"
+    },
+    {
+        "id": 8,
+        "name": "Tombouctou"
+    },
+    {
+        "id": 9,
+        "name": "Kidal"
+    }
+]

@@ -25,4 +25,12 @@ export const routeNotConnected: Array<{ path: string, Element: () => JSX.Element
     { path: '/', Element: Login },
     { path: '/inscription', Element: Signup },
     { path: '/forget_password', Element: ForgetPassword },
+
+    { path: '/demandes', Element: Demande },
+    { path: '/demandes/modifications', Element: Modification },
+    { path: '/demandes/certifications', Element: Certification },
+    { path: '/demandes/promotions', Element: Promotion },
+    { path: '/demandes/forfaits', Element: Forfait },
+    { path: '/commentaires', Element: Commentaire },
+    { path: '/profile', Element: Profile },
 ]

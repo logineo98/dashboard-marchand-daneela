@@ -1,4 +1,7 @@
 import React, { FC } from 'react'
+// my importations
+import { amountCalculation, formatNumberWithSpaces } from '../../utils/functions'
+import { PACK_TYPE } from '../../pages/Forfait'
 // my icons
 import { ImCheckmark, ImCross } from 'react-icons/im'
 
@@ -14,10 +17,15 @@ type COMPONENT_TYPE = {
         init_amount: number
         check_name: string
     }
+
+    month: { gold: number, diamond: number, platinium: number }
+    setMonth: React.Dispatch<React.SetStateAction<{ gold: number, diamond: number, platinium: number }>>
+    packName: PACK_TYPE
+    setPackName: React.Dispatch<React.SetStateAction<PACK_TYPE>>
 }
 
 const PackCard: FC<COMPONENT_TYPE> = (props) => {
-    const { pack } = props
+    const { month, pack, packName, setMonth, setPackName } = props
     const { _id, check_name, init_amount, lists, options, pack_name } = pack
 
     return (
@@ -41,13 +49,13 @@ const PackCard: FC<COMPONENT_TYPE> = (props) => {
             </ul>
             <div className='pack_amount_month_container'>
                 <h6 className='pack_amount_name'>Prix</h6>
-                <h5 className='pack_amount_value'>{init_amount} FCFA</h5>
-                <select name='mois' id='mois' className='pack_month_select_container'>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(nb => <option key={nb} value={`${nb}`} className='pack_month_select'>{`${nb} Mois`}</option>)}
+                <h5 className='pack_amount_value'>{formatNumberWithSpaces(amountCalculation(init_amount, check_name === 'Gold' ? month.gold : check_name === 'Diamond' ? month.diamond : month.platinium))} FCFA</h5>
+                <select name='mois' id='mois' disabled={packName === check_name ? false : true} value={check_name === 'Gold' ? month.gold : check_name === 'Diamond' ? month.diamond : month.platinium} onChange={e => setMonth({ ...month, gold: packName === 'Gold' ? parseInt(e.target.value, 10) : 1, diamond: packName === 'Diamond' ? parseInt(e.target.value, 10) : 1, platinium: packName === 'Platinium' ? parseInt(e.target.value, 10) : 1 })} className='pack_month_select_container'>
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(nb => <option key={nb} value={nb} className='pack_month_select'>{`${nb} Mois`}</option>)}
                 </select>
             </div>
-            <label htmlFor={`${check_name}`} className='pack_check_container'>
-                <input type='checkbox' name={`${check_name}`} id={`${check_name}`} value='true' className='pack_check' />
+            <label htmlFor={check_name} className='pack_check_container'>
+                <input type='checkbox' name={check_name} id={check_name} value={check_name} checked={packName === check_name ? true : false} onChange={e => setPackName(e.target.value as PACK_TYPE)} className='pack_check' />
                 Cocher le pack
             </label>
         </div>

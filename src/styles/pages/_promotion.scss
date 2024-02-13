@@ -33,7 +33,7 @@
         }
 
         .promotion_duree_container {
-            @include df($ai: center, $jc: space-between);
+            @include df($jc: space-between);
             flex-wrap: wrap;
 
             .promotion_duree {
@@ -82,6 +82,18 @@
                         transition: border 0.5s ease;
                     }
                 }
+
+                // erreur 
+                .error_container {
+                    @include df($dir: column, $ai: center);
+                    text-align: center;
+                    margin-bottom: rem_calc(15);
+
+                    .error {
+                        color: $error_color;
+                        font-size: rem_calc(10);
+                    }
+                }
             }
         }
 
@@ -123,16 +135,62 @@
             }
         }
 
-        .display_photo_container {
-            background: rgba($color: $black, $alpha: 0.1);
-            @include h_w($h: rem_calc(200), $w: rem_calc(400));
-            max-width: 100%;
-            @include df($ai: center, $jc: center);
-            border-radius: rem_calc(5);
-            margin: auto;
+        // redimensionner l'image
+        .redimensionner_container {
 
-            .display_photo_text {
-                font-size: rem_calc(12);
+            // bouton redimensionnner
+            .redimensionner_btn_container {
+                text-align: center;
+                margin-bottom: rem_calc(15);
+
+                .redimensionner_btn {
+                    @include btn;
+                    padding: rem_calc(10) rem_calc(20);
+                }
+            }
+        }
+
+        // image
+        .logo_bg_img {
+            @include df($dir: column, $ai: center);
+            margin-bottom: rem_calc(15);
+
+            .logo_bg_img_content {
+                @include h_w($h: rem_calc(100), $w: rem_calc(100));
+                max-width: 100%;
+
+                // format image
+                .logo_bg_img_content_img_format {
+                    background: rgba($color: $black, $alpha: 0.1);
+                    @include h100_w100;
+                    @include df($ai: center, $jc: center);
+
+                    .logo_bg_img_content_img_format_size {
+                        font-size: rem_calc(12);
+                    }
+                }
+
+                &.bg {
+                    @include h_w($h: rem_calc(200), $w: rem_calc(400));
+                }
+
+                .logo_bg_img_content_img {
+                    @include image;
+                    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+                    border-radius: rem_calc(5);
+                }
+            }
+        }
+
+        // erreur image
+        .error_container {
+            @include df($dir: column, $ai: center);
+            text-align: center;
+            margin-bottom: rem_calc(15);
+
+            .error {
+                color: $error_color;
+                font-size: rem_calc(10);
             }
         }
     }

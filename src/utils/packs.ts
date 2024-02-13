@@ -9,7 +9,7 @@ export const packs = [
         ],
         lists: [`● 5.000 FCFA/mois`, `● Remise de 25% à partir de 3 mois`, `● Remise de 30% à partir de 6 mois`, `● Remise de 35% à partir de 9 mois`, `● Remise de 40% pour abonnement de 1 an`],
         init_amount: 5000,
-        check_name: 'gold'
+        check_name: 'Gold'
     },
     {
         _id: 'second',
@@ -21,7 +21,7 @@ export const packs = [
         ],
         lists: [`● 10.000 FCFA/mois`, `● Remise de 25% à partir de 3 mois`, `● Remise de 30% à partir de 6 mois`, `● Remise de 35% à partir de 9 mois`, `● Remise de 40% pour abonnement de 1 an`],
         init_amount: 10000,
-        check_name: 'diamond'
+        check_name: 'Diamond'
     },
     {
         _id: 'third',
@@ -33,6 +33,6 @@ export const packs = [
         ],
         lists: [`● 15.000 FCFA/mois`, `● Remise de 25% à partir de 3 mois`, `● Remise de 30% à partir de 6 mois`, `● Remise de 35% à partir de 9 mois`, `● Remise de 40% pour abonnement de 1 an`],
         init_amount: 15000,
-        check_name: 'platinium'
+        check_name: 'Platinium'
     },
 ]

@@ -4,7 +4,6 @@
     @include h_w($h: rem_calc(24), $w: rem_calc(55));
     @include df($ai: center);
     border-radius: rem_calc(24);
-    transition: justify-content 0.75s ease;
 
     .switch {
         background: $white;
@@ -13,7 +12,7 @@
     }
 
     &.active {
+        background: $success_color;
         justify-content: flex-end;
-        transition: justify-content 0.75s ease;
     }
 }
