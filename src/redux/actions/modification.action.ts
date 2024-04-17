@@ -46,8 +46,6 @@ export const _addModification = (
     try {
         dispatch(_loadingModification())
 
-        console.log(data)
-
         const res = await axios.post(`${modification}`, data, { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } })
 
         toast.success('Demande envoyée avec succès.')

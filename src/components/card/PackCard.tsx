@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 // my importations
-import { amountCalculation, formatNumberWithSpaces } from '../../utils/functions'
 import { PACK_TYPE } from '../../pages/Forfait'
+import { amountCalculation, formatNumberWithSpaces } from '../../utils/functions'
 // my icons
 import { ImCheckmark, ImCross } from 'react-icons/im'
 

@@ -1,5 +1,12 @@
 .commentaire_container {
+    background-color: $white;
     color: rgba($color: $black, $alpha: 0.7);
+    @include h_w($w: rem_calc(800));
+    max-width: 100%;
+    padding: rem_calc(24);
+    margin: auto;
+    border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
+    border-radius: rem_calc(10);
 
     // commentaire header
     .commentaire_header_container {
@@ -50,7 +57,7 @@
                         }
 
                         .note_horizontale_progress {
-                            background: rgba($color: $black, $alpha: 0.1);
+                            background-color: rgba($color: $black, $alpha: 0.1);
                             @include h_w($h: rem_calc(14), $w: calc(100% - rem_calc(20)));
                             border-radius: rem_calc(3);
                         }
@@ -67,6 +74,9 @@
                     }
                 }
             }
+
+            // commentaires et avis
+            // .commentaire_content_container {}
         }
     }
 }

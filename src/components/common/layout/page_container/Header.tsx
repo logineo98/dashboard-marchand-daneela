@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 // my importations
 import { ROOT_REDUCER_TYPE } from '../../../../redux/store'
 // my icons
-import { AiOutlineMenu } from 'react-icons/ai'
 import { FiLogOut } from 'react-icons/fi'
 import { FaRegUser } from 'react-icons/fa'
+import { AiOutlineMenu } from 'react-icons/ai'
 
 type COMPONENT_TYPE = {
     page_name: string

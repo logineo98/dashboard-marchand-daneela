@@ -40,6 +40,8 @@ export const _addCertification = (data: { storeId: string }, setAcceptCondition:
         dispatch({ type: ADD_CERTIFICATION, payload: res.data })
     } catch (error: any) {
         toast.error(error?.response?.data?.message)
+        setAcceptCondition(false);
+        (document.getElementById('condition_utilisation') as HTMLInputElement).checked = false
         dispatch(_errorCertification(error?.response?.data?.message))
     }
 }

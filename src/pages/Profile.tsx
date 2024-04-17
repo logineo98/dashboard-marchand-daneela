@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // my importations
-import PageContainer from '../components/common/layout/page_container/PageContainer'
+import { api_file } from '../redux/constants'
 import { page_profile } from '../utils/page_name'
+import { ROOT_REDUCER_TYPE } from '../redux/store'
+import Switch from '../components/common/switch/Switch'
+import Loading from '../components/common/loading/Loading'
 import CategoryCard from '../components/card/CategoryCard'
 import SubCategoryCard from '../components/card/SubCategoryCard'
-import Switch from '../components/common/switch/Switch'
-import { ROOT_REDUCER_TYPE } from '../redux/store'
+import { _editPasswordMarchand } from '../redux/actions/marchand.action'
+import PageContainer from '../components/common/layout/page_container/PageContainer'
 import { EDIT_MARCHAND_PASSWORD_TYPE, validation_edit_marchand_password } from '../utils/validations/marchand.validation'
-import Loading from '../components/common/loading/Loading'
 // json
 import categories from '../utils/json/categories.json'
-import { _editPasswordMarchand } from '../redux/actions/marchand.action'
-import { api_file } from '../redux/constants'
 
 const Profile = () => {
     const { loadingMarchand, marchand } = useSelector((state: ROOT_REDUCER_TYPE) => state.marchand)

@@ -1,0 +1,161 @@
+.avis_commentaire_response_container {
+    background-color: #efefef;
+    padding: rem_calc(10);
+    border-radius: rem_calc(5);
+    margin-bottom: rem_calc(2);
+
+    &:last-child {
+        margin-bottom: rem_calc(0);
+    }
+
+    .avis_commentaire {
+        @include df($ai: center, $jc: space-between, );
+        margin-bottom: rem_calc(5);
+
+        .avis_commentaire_author_date_container {
+            width: calc(100% - rem_calc(25));
+
+            .avis_commentaire_author {
+                color: $main_black;
+                font-size: rem_calc(13);
+            }
+
+            .avis_commentaire_date_rate {
+                @include df($ai: center, );
+
+                .avis_commentaire_date {
+                    font-size: rem_calc(10);
+                    color: $main_black;
+                    margin-left: rem_calc(10);
+                }
+            }
+        }
+
+        .avis_commentaire_option_container {
+            @include df($ai: center, );
+
+            .avis_commentaire_option {
+                color: $black;
+                font-size: rem_calc(18);
+                margin-right: rem_calc(10);
+                cursor: pointer;
+
+                &:hover {
+                    font-size: rem_calc(20);
+                }
+
+                &:last-child {
+                    margin-right: rem_calc(0);
+                }
+            }
+        }
+    }
+
+    .commentaire {
+        font-size: rem_calc(13);
+        text-align: justify;
+        margin-bottom: rem_calc(5);
+    }
+
+    .avis_response {
+
+        .avis_response_btn {
+            display: inline-block;
+            color: $choose_photo_btn_bg_color;
+            font-size: rem_calc(13);
+            cursor: pointer;
+        }
+
+        .avis_response_content_container {
+            .avis_response_user_content_container {
+                background-color: rgba($color: $black, $alpha: 0.1);
+                padding: rem_calc(10);
+                border-radius: rem_calc(5);
+
+                .avis_response_user_container {
+                    @include df($ai: center, $jc: space-between, );
+                    margin-bottom: rem_calc(10);
+
+                    .avis_response_user_author {
+                        width: rem_calc(45);
+                        @include df($ai: center, $jc: space-between);
+                        color: $main_black;
+                        font-size: rem_calc(13);
+                    }
+
+                    .avis_response_date {
+                        font-size: rem_calc(10);
+                        color: $main_black;
+                        margin-left: rem_calc(10);
+                    }
+                }
+
+                .avis_response_content_icon_container {
+                    @include df($jc: space-between, );
+
+                    .avis_response_content {
+                        width: calc(100% - rem_calc(25));
+                        font-size: rem_calc(13);
+                        text-align: justify;
+                    }
+
+                    .avis_response_content_icon {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .avis_response_input_icon_error_container {
+
+                .loading_nb_caractere_container {
+                    @include h_w($h: rem_calc(25));
+                    @include df($ai: center, $jc: space-between, );
+
+                    .nb_caractere_saisie {
+                        width: 100%;
+                        display: inline-block;
+                        color: $main_black;
+                        font-size: rem_calc(10);
+                        text-align: right;
+                    }
+                }
+
+                .avis_response_input {
+                    @include h_w($h: rem_calc(80), $w: 100%);
+                    outline: none;
+                    padding: rem_calc(5);
+                    border-top-left-radius: rem_calc(5);
+                    border-bottom-left-radius: rem_calc(5);
+                    resize: none;
+                }
+
+                .avis_response_error_icon_container {
+                    @include df($ai: center, $jc: space-between, );
+
+                    .avis_response_error {
+                        color: $error_color;
+                        font-size: rem_calc(11);
+                    }
+
+                    .avis_response_icon_container {
+                        @include h_w($h: rem_calc(16));
+                        @include df($ai: center, $jc: space-between, );
+
+                        .avis_response_icon {
+                            color: $success_color;
+                            font-size: rem_calc(16);
+                            cursor: pointer;
+
+                            &:first-child {
+                                color: $error_color;
+                                margin-right: rem_calc(15);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+}

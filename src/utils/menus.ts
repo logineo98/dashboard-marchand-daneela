@@ -1,8 +1,8 @@
-
 // my icons
 import { IconType } from 'react-icons'
-import { AiFillDashboard, AiOutlineWechat } from 'react-icons/ai'
 import { BsInboxFill } from 'react-icons/bs'
+import { IoNotifications } from 'react-icons/io5'
+import { AiFillDashboard, AiOutlineWechat } from 'react-icons/ai'
 
 type COMPONENT_TYPE = Array<{
     menu_name: string,
@@ -16,6 +16,7 @@ export const menus: COMPONENT_TYPE = [
             { submenu_name: 'Accueil', submenu_url: '/', submenu_icon: AiFillDashboard },
             { submenu_name: 'Demandes', submenu_url: '/demandes', submenu_icon: BsInboxFill },
             { submenu_name: 'Commentaires', submenu_url: '/commentaires', submenu_icon: AiOutlineWechat },
+            { submenu_name: 'Notifications', submenu_url: '/notifications', submenu_icon: IoNotifications },
         ]
     },
 ]

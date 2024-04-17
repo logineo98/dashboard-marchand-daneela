@@ -1,20 +1,20 @@
 import React, { createRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// my importations
 import { Cropper, ReactCropperElement } from 'react-cropper'
-import AuthContainer from '../components/common/layout/auth/AuthContainer'
-import CategoryCard from '../components/card/CategoryCard'
-import SubCategoryCard from '../components/card/SubCategoryCard'
-import Switch from '../components/common/switch/Switch'
-import { MARCHAND_VALIDATION_TYPE, validation_marchand } from '../utils/validations/marchand.validation'
-import { _addMarchand } from '../redux/actions/marchand.action'
-import { ROOT_REDUCER_TYPE } from '../redux/store'
-import { images_files_constants } from '../utils/constants'
-import Loading from '../components/common/loading/Loading'
+// my importations
 import { base64ToFile } from '../utils/functions'
+import { ROOT_REDUCER_TYPE } from '../redux/store'
+import Switch from '../components/common/switch/Switch'
+import Loading from '../components/common/loading/Loading'
+import CategoryCard from '../components/card/CategoryCard'
+import { images_files_constants } from '../utils/constants'
+import { _addMarchand } from '../redux/actions/marchand.action'
+import SubCategoryCard from '../components/card/SubCategoryCard'
+import AuthContainer from '../components/common/layout/auth/AuthContainer'
+import { MARCHAND_VALIDATION_TYPE, validation_marchand } from '../utils/validations/marchand.validation'
 // json
-import categories from '../utils/json/categories.json'
 import regions from '../utils/json/regions.json'
+import categories from '../utils/json/categories.json'
 
 
 type TYPE_IMG_TYPE = 'logo' | 'couverture' | 'prod_phare_1' | 'prod_phare_2' | 'prod_phare_3'

@@ -1,14 +1,15 @@
 import Home from '../pages/Home'
-import ForgetPassword from '../pages/ForgetPassword'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
-import Demande from '../pages/Demande'
-import Commentaire from '../pages/Commentaire'
-import Modification from '../pages/Modification'
-import Certification from '../pages/Certification'
-import Promotion from '../pages/Promotion'
 import Forfait from '../pages/Forfait'
 import Profile from '../pages/Profile'
+import Demande from '../pages/Demande'
+import Promotion from '../pages/Promotion'
+import Commentaire from '../pages/Commentaire'
+import Notification from '../pages/Notification'
+import Modification from '../pages/Modification'
+import Certification from '../pages/Certification'
+import ForgetPassword from '../pages/ForgetPassword'
 
 export const routeConnected: Array<{ path: string, Element: () => JSX.Element }> = [
     { path: '/', Element: Home },
@@ -19,6 +20,7 @@ export const routeConnected: Array<{ path: string, Element: () => JSX.Element }>
     { path: '/demandes/forfaits', Element: Forfait },
     { path: '/commentaires', Element: Commentaire },
     { path: '/profile', Element: Profile },
+    { path: '/notifications', Element: Notification },
 ]
 
 export const routeNotConnected: Array<{ path: string, Element: () => JSX.Element }> = [
@@ -33,4 +35,5 @@ export const routeNotConnected: Array<{ path: string, Element: () => JSX.Element
     { path: '/demandes/forfaits', Element: Forfait },
     { path: '/commentaires', Element: Commentaire },
     { path: '/profile', Element: Profile },
+    { path: '/notifications', Element: Notification },
 ]

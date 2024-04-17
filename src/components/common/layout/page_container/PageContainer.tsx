@@ -1,11 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import React, { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 // my importations
 import Header from './Header'
 import { ROOT_REDUCER_TYPE } from '../../../../redux/store'
-import { _isAdminConnected } from '../../../../redux/actions/admin.action'
 import { isTokenExpired } from '../../../../utils/functions'
+import { _isAdminConnected } from '../../../../redux/actions/admin.action'
+import { page_certification, page_forfait, page_modification, page_promotion } from '../../../../utils/page_name'
 
 type COMPONENT_TYPE = {
     children: React.ReactNode
@@ -18,9 +19,26 @@ const PageContainer: FC<COMPONENT_TYPE> = (props) => {
     const navigate = useNavigate()
 
     let { connected } = useSelector((state: ROOT_REDUCER_TYPE) => state.admin)
+    let { loadingModification } = useSelector((state: ROOT_REDUCER_TYPE) => state.modification)
+    let { loadingCertification } = useSelector((state: ROOT_REDUCER_TYPE) => state.certification)
+    let { loadingPromotion } = useSelector((state: ROOT_REDUCER_TYPE) => state.promotion)
+    let { loadingForfait } = useSelector((state: ROOT_REDUCER_TYPE) => state.forfait)
     const dispatch = useDispatch<any>()
 
     const [isConnected, setIsConnected] = useState(connected)
+    const [reduxLoading, setReduxLoading] = useState(false)
+
+    useEffect(() => {
+        switch (page_name) {
+            case page_modification: setReduxLoading(loadingModification); break
+            case page_certification: setReduxLoading(loadingCertification); break
+            case page_promotion: setReduxLoading(loadingPromotion); break
+            case page_forfait: setReduxLoading(loadingForfait); break
+
+            default: setReduxLoading(false); break
+        }
+    }, [page_name, loadingCertification, loadingForfait, loadingModification, loadingPromotion])
+
 
     useEffect(() => {
         document.title = page_name
@@ -28,8 +46,9 @@ const PageContainer: FC<COMPONENT_TYPE> = (props) => {
         const accessToken = localStorage.getItem('accessToken')
         const email = localStorage.getItem('email')
         const expireIn = localStorage.getItem('expireIn')
+        const marchand = localStorage.getItem('marchand')
 
-        if (accessToken && email && expireIn) {
+        if (accessToken && email && expireIn && marchand) {
             if (isTokenExpired(new Date().getTime(), parseInt(expireIn, 10))) {
                 setIsConnected(false)
                 navigate('/')
@@ -50,6 +69,12 @@ const PageContainer: FC<COMPONENT_TYPE> = (props) => {
 
             <div className='page_content_container'>
                 {children}
+
+                {reduxLoading &&
+                    <div className='waiting_msg_container'>
+                        <p className='waiting_msg'>Veuillez patienter...</p>
+                    </div>
+                }
             </div>
         </div>
     )

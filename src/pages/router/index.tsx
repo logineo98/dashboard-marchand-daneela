@@ -1,10 +1,10 @@
 import React from 'react'
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 // my importations
-import { routeConnected, routeNotConnected } from '../../utils/routes'
-import Layout from '../../components/common/layout/Layout'
 import { ROOT_REDUCER_TYPE } from '../../redux/store'
+import Layout from '../../components/common/layout/Layout'
+import { routeConnected, routeNotConnected } from '../../utils/routes'
 
 const RouterIndex = () => {
     let { connected } = useSelector((state: ROOT_REDUCER_TYPE) => state.admin)

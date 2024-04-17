@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { ADD_MARCHAND, EDIT_PASSWORD_MARCHAND, ERROR_MARCHAND, GET_MARCHAND, LOADING_MARCHAND, auth, marchand } from '../constants'
 import { toast } from 'react-toastify'
+import { ADD_MARCHAND, EDIT_PASSWORD_MARCHAND, ERROR_MARCHAND, GET_MARCHAND, LOADING_MARCHAND, auth, marchand } from '../constants'
 
 const token = localStorage.getItem('accessToken')
 
@@ -12,14 +12,12 @@ export const _errorMarchand = (payload: any) => (dispatch: any) => {
     dispatch({ type: ERROR_MARCHAND, payload })
 }
 
-
 export const _getMarchand = () => async (dispatch: any) => {
     try {
-        dispatch(_loadingMarchand())
+        const marchand = localStorage.getItem('marchand')
 
-        const res = await axios.get(`${marchand}/me`, { headers: { Authorization: `Bearer ${token}` } })
+        if (marchand) dispatch({ type: GET_MARCHAND, payload: JSON.parse(marchand) })
 
-        dispatch({ type: GET_MARCHAND, payload: res.data })
     } catch (error: any) {
         dispatch(_errorMarchand(error?.response?.data?.message))
     }

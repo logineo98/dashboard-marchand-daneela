@@ -11,7 +11,8 @@ import certificationReducer from './reducers/certification.reducer'
 import forfaitReducer from './reducers/forfait.reducer'
 import promotionReducer from './reducers/promotion.reducer'
 import modificationReducer from './reducers/modification.reducer'
-
+import avisReducer from './reducers/avis.reducer'
+import notificationReducer from './reducers/notification.reducer'
 
 // regrouper tous les reducers
 const rootReducer = combineReducers({
@@ -21,6 +22,8 @@ const rootReducer = combineReducers({
     forfait: forfaitReducer,
     promotion: promotionReducer,
     modification: modificationReducer,
+    avis: avisReducer,
+    notification: notificationReducer,
 })
 
 export type ROOT_REDUCER_TYPE = ReturnType<typeof rootReducer>

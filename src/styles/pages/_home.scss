@@ -6,7 +6,7 @@
         // padding: rem_calc(24) rem_calc(12) rem_calc(24) rem_calc(24);
 
         .m_c_p_f {
-            background: $white;
+            background-color: $white;
             margin-bottom: rem_calc(24);
             border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
             border-radius: rem_calc(5);
@@ -123,7 +123,7 @@
         // padding: rem_calc(24) rem_calc(24) rem_calc(24) rem_calc(12);
 
         .notification_header_container {
-            background: $main_black;
+            background-color: $main_black;
             @include df($ai: center);
             padding: rem_calc(10);
             border-top-left-radius: rem_calc(5);
@@ -142,37 +142,11 @@
         }
 
         .notification_content_container {
-            background: $white;
+            background-color: $white;
             border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
             padding: rem_calc(10);
             border-bottom-left-radius: rem_calc(5);
             border-bottom-right-radius: rem_calc(5);
-
-            .notification_content {
-                @include df($ai: center);
-                padding: rem_calc(10) rem_calc(5);
-                border-radius: rem_calc(5);
-                cursor: pointer;
-
-                .notification_content_name {
-                    color: $main_black;
-                    font-size: rem_calc(12);
-                }
-
-                .notification_content_value {
-                    background: $success_color;
-                    color: $white;
-                    font-size: rem_calc(12);
-                    font-weight: 600;
-                    padding: rem_calc(5) rem_calc(10);
-                    margin-left: rem_calc(10);
-                    border-radius: rem_calc(5);
-                }
-
-                &:hover {
-                    background-color: rgba($color: $black, $alpha: 0.2);
-                }
-            }
         }
     }
 }

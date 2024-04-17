@@ -236,4 +236,101 @@ export type INITIAL_FORFAIT_STATE_TYPE = {
     error: any
 }
 
+/***************************************************************
+ * AVIS
+***************************************************************/
+export type AVIS_TYPE = {
+    id: string
+    name: string
+    url: string
+    logo: string
+    couverture: string
+    adresse: string
+    region: string
+    telephone: string
+    email: string
+    vitepay: boolean
+    frame: boolean
+    description: string
+    certifie: boolean
+    status: string
+    livraison: string
+    serviceApresVente: boolean
+    produits: string[]
+    tagId: string
+    networkId: string
+    merchantId: string
+    createdAt: Date
+    updatedAt: Date
+    network: {
+        id: string
+        facebook: string
+        instagram: string
+        linkedin: string
+    }
+    tags: {
+        id: string
+        categories: string[]
+        sousCategories: string[]
+        prixMaximum: number
+        prixMinimum: number
+    }
+    avis: {
+        id: string
+        auteur: string
+        avatar: string
+        fbUserId: string
+        note: number
+        content: {
+            id: string
+            message: string
+            reponse: {
+                id: string
+                message: string
+                createdAt: Date
+                updatedAt: Date
+            } | null
+            createdAt: Date
+            updatedAt: Date
+        } | null
+    }[]
+    rate: {
+        value: number
+        rates: {
+            rate: string
+            value: number
+        }[]
+        votes: number
+    }
+}
 
+export type INITIAL_AVIS_STATE_TYPE = {
+    avis: null | AVIS_TYPE
+    allAvis: Array<AVIS_TYPE>
+    loadingAvis: boolean
+    loadingAddAvis: boolean
+    loadingDeleteAvis: boolean
+    loadingDeleteAvisResponse: boolean
+    error: any
+}
+
+/***************************************************************
+ * AVIS
+***************************************************************/
+export type NOTIFICATION_TYPE = {
+    id: string
+    title: string
+    message: string
+    read: boolean
+    createdAt: Date
+    updatedAt: Date
+}
+
+export type INITIAL_NOTIFICATION_TYPE = {
+    loadingNotification: boolean
+    loadingPutNotificationRead: boolean
+    error: any
+    errorPutNotificationRead: any
+    notification: null | NOTIFICATION_TYPE
+    allNotifications: Array<NOTIFICATION_TYPE>
+}

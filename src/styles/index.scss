@@ -7,24 +7,27 @@
 
 // importation pages
 @import './pages/login';
-@import './pages/forget_password';
 @import './pages/signup';
+@import './pages/forget_password';
 
 @import './pages/home';
 @import './pages/demande';
+@import './pages/forfait';
+@import './pages/promotion';
+@import './pages/commentaire';
+@import './pages/notification';
 @import './pages/modification';
 @import './pages/certification';
-@import './pages/promotion';
-@import './pages/forfait';
-@import './pages/commentaire';
 @import './pages/profile/profile';
 
 // importation components
 // card
+@import './components/card/commentaire/avis_card';
+@import './components/card/home/notification_card';
 
 // common
-@import './components/common/layout/layout';
-@import './components/common/layout/auth/auth';
-@import './components/common/rating/rating';
-@import './components/common/switch/switch';
 @import './components/common/modal/modal';
+@import './components/common/rating/rating';
+@import './components/common/layout/layout';
+@import './components/common/switch/switch';
+@import './components/common/layout/auth/auth';

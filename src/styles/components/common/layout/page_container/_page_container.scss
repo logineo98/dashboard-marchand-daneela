@@ -1,13 +1,31 @@
 .page_container {
-    background: $bg_color;
+    background-color: $bg_color;
     @include h_w($h: 100%, $w: calc(100% - rem_calc(345)));
 
     @import './header';
 
     .page_content_container {
+        position: relative;
         @include h_w($h: calc(100% - rem_calc(60)), $w: 100%);
         overflow-y: auto;
         padding: rem_calc(24);
+
+        .waiting_msg_container {
+            @include h100_w100;
+            @include pos_fix_t_l($t: rem_calc(60), $l: rem_calc(345));
+            z-index: 5;
+
+            .waiting_msg {
+                background-color: $black;
+                @include h_w($h: calc(100% - rem_calc(60)), $w: calc(100% - rem_calc(345)));
+                @include df($ai: center, $jc: center);
+                color: $white;
+                font-size: rem_calc(20);
+                font-weight: 600;
+                z-index: 10;
+                opacity: 0.5;
+            }
+        }
     }
 }
 
@@ -17,5 +35,15 @@ RESPONSIVE
 @media only screen and (max-width: rem_calc(915)) {
     .page_container {
         width: 100%;
+
+        .page_content_container {
+            .waiting_msg_container {
+                left: 0;
+
+                .waiting_msg {
+                    width: 100%;
+                }
+            }
+        }
     }
 }

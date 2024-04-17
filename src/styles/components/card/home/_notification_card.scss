@@ -1,0 +1,55 @@
+.notification_content {
+    background-color: rgba($color: $black, $alpha: 0.1);
+    @include df($dir: column, );
+    padding: rem_calc(10);
+    border-radius: rem_calc(5);
+    margin-bottom: rem_calc(2);
+    cursor: pointer;
+
+    &:last-child {
+        margin-bottom: rem_calc(0);
+    }
+
+    .notification_content_name {
+        color: $main_black;
+        font-size: rem_calc(12);
+        font-weight: 600;
+        text-align: justify;
+    }
+
+    .notification_content_value {
+        font-size: rem_calc(12);
+        text-align: justify;
+    }
+
+    .notification_content_date_container {
+        @include h_w($w: 100%);
+        @include df($ai: center, $jc: space-between);
+        margin-top: rem_calc(5);
+
+        .notification_content_read {
+            font-size: rem_calc(10);
+            color: $error_color;
+        }
+
+        .notification_content_date {
+            color: $main;
+            font-size: rem_calc(10);
+        }
+    }
+
+    &:hover {
+        background-color: rgba($color: $black, $alpha: 0.2);
+    }
+
+    &.read {
+        background-color: rgba($color: $black, $alpha: 0.050);
+        cursor: default;
+
+        .notification_content_date_container {
+            .notification_content_read {
+                color: $success_color;
+            }
+        }
+    }
+}

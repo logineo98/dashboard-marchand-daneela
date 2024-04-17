@@ -49,11 +49,12 @@
         &:focus {
             .option_container {
                 display: inline-block;
-                background: $white;
+                background-color: $white;
                 @include h_w($w: rem_calc(150));
                 @include pos_abs_b_r($b: -rem_calc(0), $r: rem_calc(0));
                 border: rem_calc(1) solid rgba($color: $black, $alpha: 0.2);
                 border-radius: rem_calc(5);
+                z-index: 50;
 
                 .option {
                     @include df($ai: center);

@@ -1,28 +1,26 @@
-import React, { createRef, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import React, { createRef, useEffect, useState } from 'react'
 // my importations
-import { Cropper, ReactCropperElement } from 'react-cropper'
-import CategoryCard from '../components/card/CategoryCard'
-import SubCategoryCard from '../components/card/SubCategoryCard'
-import Switch from '../components/common/switch/Switch'
-import PageContainer from '../components/common/layout/page_container/PageContainer'
-import { page_modification } from '../utils/page_name'
-import { ROOT_REDUCER_TYPE } from '../redux/store'
 import { api_file } from '../redux/constants'
-import { MARCHAND_VALIDATION_TYPE, validation_marchand_edit } from '../utils/validations/marchand.validation'
-import { images_files_constants } from '../utils/constants'
 import { base64ToFile } from '../utils/functions'
-import Loading from '../components/common/loading/Loading'
+import { ROOT_REDUCER_TYPE } from '../redux/store'
+import { page_modification } from '../utils/page_name'
+import Switch from '../components/common/switch/Switch'
+import CategoryCard from '../components/card/CategoryCard'
+import { images_files_constants } from '../utils/constants'
+import { Cropper, ReactCropperElement } from 'react-cropper'
+import SubCategoryCard from '../components/card/SubCategoryCard'
 import { _addModification } from '../redux/actions/modification.action'
+import PageContainer from '../components/common/layout/page_container/PageContainer'
+import { MARCHAND_VALIDATION_TYPE, validation_marchand_edit } from '../utils/validations/marchand.validation'
 // json
-import categories from '../utils/json/categories.json'
 import regions from '../utils/json/regions.json'
+import categories from '../utils/json/categories.json'
 
 type TYPE_IMG_TYPE = 'logo' | 'couverture' | 'prod_phare_1' | 'prod_phare_2' | 'prod_phare_3'
 
 const Modification = () => {
     const { marchand } = useSelector((state: ROOT_REDUCER_TYPE) => state.marchand)
-    const { loadingModification } = useSelector((state: ROOT_REDUCER_TYPE) => state.modification)
     const dispatch = useDispatch<any>()
 
     // les data
@@ -449,463 +447,458 @@ const Modification = () => {
 
     return (
         <PageContainer page_name={page_modification}>
-            {loadingModification ?
-                <div style={{ height: 'calc(100vh - 108px)', display: 'flex', justifyContent: 'center' }}>
-                    <Loading width='100' />
-                </div> :
-                <div className='modification_container'>
-                    {/* header de la page modification */}
-                    <div className='modification_header_container'>
-                        <h1 className='modification_header_title'>Modification de vos informations</h1>
-                        <p className='modification_header_text'>Veuillez saisir vos nouvelles informations</p>
-                    </div>
-
-                    {/* information necessaire sur la boutique */}
-                    <form className='about_shop_container' onSubmit={handleSubmit}>
-                        {/* information de la boutique */}
-                        <div className='about_shop'>
-                            <h1 className='about_shop_title'>Information de la boutique</h1>
-                            <div className='about_shop_content_container'>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_name' className='_label'>Marchand/Nom de la boutique en ligne *</label>
-                                    <input type='text' name='shop_name' id='shop_name' placeholder='ex: Boutique' value={dataStore.name} onChange={e => setDataStore({ ...dataStore, name: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.store?.name && <span className='error'>{err.store.name}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_email' className='_label'>Email de la boutique *</label>
-                                    <input type='text' name='shop_email' id='shop_email' placeholder='ex: exemple@domaine.com' value={dataStore.email} onChange={e => setDataStore({ ...dataStore, email: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.store?.email && <span className='error'>{err.store.email}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_site_url' className='_label'>URL du site web *</label>
-                                    <input type='text' name='shop_site_url' id='shop_site_url' placeholder='ex: https://nomdudomaine.com' value={dataStore.url} onChange={e => setDataStore({ ...dataStore, url: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.store?.url && <span className='error'>{err.store.url}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_adresse' className='_label'>Adresse de la boutique *</label>
-                                    <input type='text' name='shop_adresse' id='shop_adresse' placeholder='ex: Kalaban coura' value={dataStore.adresse} onChange={e => setDataStore({ ...dataStore, adresse: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.store?.adresse && <span className='error'>{err.store.adresse}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_region' className='_label'>Région *</label>
-                                    <select name='shop_region' id='shop_region' value={dataStore.region} onChange={e => setDataStore({ ...dataStore, region: e.target.value })} className='_select_container'>
-                                        <option value='' className='_select'>Région</option>
-                                        {regions.map(region => <option key={region.id} value={region.name} className='_select'>{region.name}</option>)}
-                                    </select>
-                                    <div className='error_container'>
-                                        {err?.store?.region && <span className='error'>{err.store.region}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_num_tel' className='_label'>Numéro de téléphone de la boutique *</label>
-                                    <div className='indicatif_tel_container'>
-                                        <select name='shop_tel_indicatif' className='_select_container' disabled>
-                                            <option value='+223' className='_select'>+223</option>
-                                        </select>
-                                        <input type='tel' name='shop_num_tel' id='shop_num_tel' placeholder='ex: 20244715' value={dataStore.telephone} onChange={e => setDataStore({ ...dataStore, telephone: e.target.value })} className='_input' />
-                                    </div>
-                                    <div className='error_container'>
-                                        {err?.store?.telephone && <span className='error'>{err.store.telephone}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_description' className='_label'>Description de la boutique *</label>
-                                    <textarea name='shop_description' id='shop_description' placeholder='Description de la boutique *' value={dataStore.description} onChange={e => setDataStore({ ...dataStore, description: e.target.value })} className='_textarea'></textarea>
-                                    <div className='error_container'>
-                                        {err?.store?.description && <span className='error'>{err.store.description}</span>}
-                                    </div>
-                                </div>
-                                <div className='switch_container_'>
-                                    <span className='switch_title'>Êtes-vous un marchand Vitepay ?</span>
-                                    <Switch editable active={marchandVitepay} setActive={setMarchandVitepay} />
-                                </div>
-                                <div className='switch_container_'>
-                                    <span className='switch_title'>Le site peut-il s'afficher sur daneela ?</span>
-                                    <Switch editable active={frame} setActive={setFrame} />
-                                </div>
-                            </div>
-                        </div>
-                        {/* lien des reseaux sociaux */}
-                        <div className='about_shop'>
-                            <h1 className='about_shop_title'>Liens des réseaux sociaux</h1>
-                            <div className='about_shop_content_container'>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_facebook_url' className='_label'>Facebook</label>
-                                    <input type='text' name='shop_facebook_url' id='shop_facebook_url' placeholder='Lien du compte facebook' value={dataNetwork.facebook} onChange={e => setDataNetwork({ ...dataNetwork, facebook: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.network?.facebook && <span className='error'>{err.network.facebook}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_instagram_url' className='_label'>Instagram</label>
-                                    <input type='text' name='shop_instagram_url' id='shop_instagram_url' placeholder='Lien du compte instagram' value={dataNetwork.instagram} onChange={e => setDataNetwork({ ...dataNetwork, instagram: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.network?.instagram && <span className='error'>{err.network.instagram}</span>}
-                                    </div>
-                                </div>
-                                <div className='label_input_error_container'>
-                                    <label htmlFor='shop_linkedin_url' className='_label'>Linkedin</label>
-                                    <input type='text' name='shop_linkedin_url' id='shop_linkedin_url' placeholder='Lien du compte linkedin' value={dataNetwork.linkedin} onChange={e => setDataNetwork({ ...dataNetwork, linkedin: e.target.value })} className='_input' />
-                                    <div className='error_container'>
-                                        {err?.network?.linkedin && <span className='error'>{err.network.linkedin}</span>}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* catégories et sous catégories */}
-                        <div className='about_shop'>
-                            <h1 className='about_shop_title'>Catégories et sous catégories</h1>
-                            <div className='about_shop_content_container'>
-                                {/* categories */}
-                                <div className='category_container'>
-                                    <h2 className='category_title'>Catégories</h2>
-                                    <div className='category_content_container'>
-                                        {categories.map(category => <CategoryCard key={category.id} name={category.name} editable categories={categories_} setCategories={setCategories_} sousCategories={sousCategories_} setSousCategories={setSousCategories_} />)}
-                                    </div>
-                                    <div className='error_container'>
-                                        {err?.tag?.categories && <span className='error'>{err.tag.categories}</span>}
-                                    </div>
-                                </div>
-
-                                {/* sous categories */}
-                                <div className='category_container'>
-                                    <h2 className='category_title'>Sous catégories</h2>
-                                </div>
-                                {categories.map(category => <SubCategoryCard key={category.id} category={category} active={categories_.includes(category.name)} sousCategories={sousCategories_} setSousCategories={setSousCategories_} />)}
-                            </div>
-                        </div>
-                        {/* fourchette de prix */}
-                        <div className='f_serv_sup_container'>
-                            <h1 className='f_serv_sup_title'>Fouchette de prix</h1>
-                            <div className='f_serv_sup_content_container'>
-                                {/* min */}
-                                <div className='fourchette'>
-                                    <label htmlFor='min' className='fourchette_label'>Min *</label>
-                                    <select name='min' id='min' value={dataTag.prixMinimum} onChange={e => setDataTag({ ...dataTag, prixMinimum: parseInt(e.target.value, 10) })} className='fourchette_select_container'>
-                                        <option value={100}>100</option>
-                                        <option value={1000}>1.000</option>
-                                        <option value={25000}>25.000</option>
-                                    </select>
-                                </div>
-                                {/* max */}
-                                <div className='fourchette'>
-                                    <label htmlFor='max' className='fourchette_label'>Max *</label>
-                                    <select name='max' id='max' value={dataTag.prixMaximum} onChange={e => setDataTag({ ...dataTag, prixMaximum: parseInt(e.target.value, 10) })} className='fourchette_select_container'>
-                                        <option value={25000}>25.000</option>
-                                        <option value={30000}>30.000</option>
-                                        <option value={100000}>100.000</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        {/* services supplementaires */}
-                        <div className='f_serv_sup_container'>
-                            <h1 className='f_serv_sup_title'>Services supplementaires</h1>
-                            <div className='f_serv_sup_content_container'>
-                                {/* livraison */}
-                                <div className='liv_serv_ap_vente_container'>
-                                    <h2 className='liv_serv_ap_vente_title'>Livraison :</h2>
-                                    <div className='liv_serv_ap_vente_content_container'>
-                                        <div className='liv_serv_ap_vente_content'>
-                                            <label htmlFor='non_disponible' className='liv_serv_ap_vente_content_title'>Non disponible</label>
-                                            <input type='radio' name='livraison' id='non_disponible' checked={dataStore.livraison === 'Non disponible'} value='Non disponible' onChange={e => setDataStore({ ...dataStore, livraison: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
-                                        </div>
-                                        <div className='liv_serv_ap_vente_content'>
-                                            <label htmlFor='gratuite' className='liv_serv_ap_vente_content_title'>Gratuite</label>
-                                            <input type='radio' name='livraison' id='gratuite' checked={dataStore.livraison === 'Gratuite'} value='Gratuite' onChange={e => setDataStore({ ...dataStore, livraison: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
-                                        </div>
-                                        <div className='liv_serv_ap_vente_content'>
-                                            <label htmlFor='payante' className='liv_serv_ap_vente_content_title'>Payante</label>
-                                            <input type='radio' name='livraison' id='payante' checked={dataStore.livraison === 'Payante'} value='Payante' onChange={e => setDataStore({ ...dataStore, livraison: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* service après vente */}
-                                <div className='liv_serv_ap_vente_container'>
-                                    <h2 className='liv_serv_ap_vente_title'>Services après vente :</h2>
-                                    <div className='liv_serv_ap_vente_content_container'>
-                                        <div className='liv_serv_ap_vente_content'>
-                                            <label htmlFor='oui' className='liv_serv_ap_vente_content_title'>Oui</label>
-                                            <input type='radio' name='serv_ap_vente' id='oui' value='oui' checked={dataStore.serviceApresVente === 'oui'} onChange={e => setDataStore({ ...dataStore, serviceApresVente: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
-                                        </div>
-                                        <div className='liv_serv_ap_vente_content'>
-                                            <label htmlFor='non' className='liv_serv_ap_vente_content_title'>Non</label>
-                                            <input type='radio' name='serv_ap_vente' id='non' checked={dataStore.serviceApresVente === 'non'} value='non' onChange={e => setDataStore({ ...dataStore, serviceApresVente: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* logo et image de couverture */}
-                        <div className='logo_bg_img_container'>
-                            {/* importation du logo */}
-                            <div className='choose_photo_container'>
-                                <span className='choose_photo_text'>Veuillez importer le logo</span>
-                                <span className='choose_photo_size'>(100 x 100)</span>
-                                <label htmlFor='logo' className='choose_photo_btn'>
-                                    Choisir le logo
-                                    <input type='file' name='logo' id='logo' accept='image/*' onChange={(e) => handleChooseImg(e, 'logo')} style={{ display: 'none' }} />
-                                </label>
-                            </div>
-                            {/* redimensionner le logo */}
-                            {(logoDimensionError && !logoTypeError && !logoSizeError) &&
-                                <div className='redimensionner_container'>
-                                    <Cropper
-                                        ref={cropperRefLogo}
-                                        style={{ height: 100, maxWidth: '100%', width: '100%', marginBottom: 15, }}
-                                        zoomTo={0}
-                                        src={logoImg}
-                                        viewMode={1}
-                                        cropBoxResizable={false}
-                                        initialAspectRatio={1}
-                                        aspectRatio={1}
-                                        minCropBoxHeight={100}
-                                        minCropBoxWidth={100}
-                                        background={true}
-                                        responsive={true}
-                                        autoCropArea={1}
-                                        guides={false}
-                                        data={{ height: 100, width: 100 }}
-                                    />
-
-                                    <div className='redimensionner_btn_container'>
-                                        <button className='redimensionner_btn' onClick={() => getCropData('logo')}>Redimensionner</button>
-                                    </div>
-                                </div>
-                            }
-                            {/* logo */}
-                            <div className='logo_bg_img'>
-                                <div className='logo_bg_img_content'>
-                                    {(!logoImg.trim() && !cropDataLogo.trim()) ?
-                                        <img src={`${api_file}/${marchand?.store.logo}`} alt='logo' style={{ objectFit: logoImg ? 'contain' : cropDataLogo ? 'cover' : 'initial' }} className='logo_bg_img_content_img' /> :
-                                        <img src={logoImg ? logoImg : cropDataLogo && cropDataLogo} alt='logo' style={{ objectFit: logoImg ? 'contain' : cropDataLogo ? 'cover' : 'initial' }} className='logo_bg_img_content_img' />}
-                                </div>
-                            </div>
-                            {/* logo erreur */}
-                            <div className='error_container'>
-                                {(logoDimensionError && logoDimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${logoDimension.width}x${logoDimension.height}) au lieu de (100x100)`}</span>}
-                                {logoTypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
-                                {logoSizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
-                                {err?.logo && <span className='error'>{err.logo}</span>}
-                            </div>
-                            {/* importation de la photo de couverture */}
-                            <div className='choose_photo_container'>
-                                <span className='choose_photo_text'>Veuillez importer la photo de couverture</span>
-                                <span className='choose_photo_size'>(800 x 400)</span>
-                                <label htmlFor='couverture' className='choose_photo_btn'>
-                                    Choisir la photo de couverture
-                                    <input type='file' name='couverture' id='couverture' accept='image/*' onChange={(e) => handleChooseImg(e, 'couverture')} style={{ display: 'none' }} />
-                                </label>
-                            </div>
-                            {/* redimensionner la photo de couverture */}
-                            {(couvertureDimensionError && !couvertureTypeError && !couvertureSizeError) &&
-                                <div className='redimensionner_container'>
-                                    <Cropper
-                                        ref={cropperRefCouverture}
-                                        style={{ height: 400, maxWidth: '100%', width: '100%', marginBottom: 15, }}
-                                        zoomTo={0}
-                                        src={couvertureImg}
-                                        viewMode={1}
-                                        cropBoxResizable={false}
-                                        initialAspectRatio={16 / 8}
-                                        aspectRatio={16 / 8}
-                                        minCropBoxHeight={400}
-                                        minCropBoxWidth={800}
-                                        background={true}
-                                        responsive={true}
-                                        autoCropArea={0.7}
-                                        guides={false}
-                                        data={{ height: 400, width: 800 }}
-                                    />
-
-                                    <div className='redimensionner_btn_container'>
-                                        <button className='redimensionner_btn' onClick={() => getCropData('couverture')}>Redimensionner</button>
-                                    </div>
-                                </div>
-                            }
-                            {/* couverture */}
-                            <div className='logo_bg_img'>
-                                <div className='logo_bg_img_content bg'>
-                                    {(!couvertureImg.trim() && !cropDataCouverture.trim()) ?
-                                        <img src={`${api_file}/${marchand?.store.couverture}`} alt='logo' style={{ objectFit: logoImg ? 'contain' : cropDataLogo ? 'cover' : 'initial' }} className='logo_bg_img_content_img' /> :
-                                        <img src={couvertureImg ? couvertureImg : cropDataCouverture && cropDataCouverture} alt='photo_de_couverture' style={{ objectFit: couvertureImg ? 'contain' : cropDataCouverture ? 'cover' : 'initial' }} className='logo_bg_img_content_img' />
-                                    }
-                                </div>
-                            </div>
-                            {/* couverture erreur */}
-                            <div className='error_container'>
-                                {(couvertureDimensionError && couvertureDimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${couvertureDimension.width}x${couvertureDimension.height}) au lieu de (800x400)`}</span>}
-                                {couvertureTypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
-                                {couvertureSizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 1 Mo)</span>}
-                                {err?.cover && <span className='error'>{err.cover}</span>}
-                            </div>
-                        </div>
-                        {/* partie produit phare */}
-                        <div className='produit_phare_container'>
-                            {/* phrase d'importation des 3 photos du produit phare */}
-                            <div className='choose_photo_container'>
-                                <span className='choose_photo_text'>Veuillez importer 3 photos pour vos produits phares</span>
-                            </div>
-                            {/* redimensionner produit phare image (première image) */}
-                            {(prodPhare1DimensionError && !prodPhare1TypeError && !prodPhare1SizeError) &&
-                                <div className='redimensionner_container'>
-                                    <Cropper
-                                        ref={cropperRefprodPhare1}
-                                        style={{ height: 300, maxWidth: '100%', width: '100%', marginBottom: 15, }}
-                                        zoomTo={0}
-                                        src={prodPhareImg1}
-                                        viewMode={1}
-                                        cropBoxResizable={false}
-                                        initialAspectRatio={1}
-                                        aspectRatio={1}
-                                        minCropBoxHeight={300}
-                                        minCropBoxWidth={300}
-                                        background={true}
-                                        responsive={true}
-                                        autoCropArea={1}
-                                        guides={false}
-                                        data={{ height: 300, width: 300 }}
-                                    />
-
-                                    {/* produit phare image erreur */}
-                                    <div className='error_container'>
-                                        {(prodPhare1DimensionError && prodPhare1Dimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${prodPhare1Dimension.width}x${prodPhare1Dimension.height}) au lieu de (300x300)`}</span>}
-                                        {prodPhare1TypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
-                                        {prodPhare1SizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
-                                    </div>
-
-                                    <div className='redimensionner_btn_container'>
-                                        <button className='redimensionner_btn' onClick={() => getCropData('prod_phare_1')}>Redimensionner</button>
-                                    </div>
-                                </div>
-                            }
-                            {/* redimensionner produit phare image (deuxième image) */}
-                            {(prodPhare2DimensionError && !prodPhare2TypeError && !prodPhare2SizeError) &&
-                                <div className='redimensionner_container'>
-                                    <Cropper
-                                        ref={cropperRefprodPhare2}
-                                        style={{ height: 300, maxWidth: '100%', width: '100%', marginBottom: 15, }}
-                                        zoomTo={0}
-                                        src={prodPhareImg2}
-                                        viewMode={1}
-                                        cropBoxResizable={false}
-                                        initialAspectRatio={1}
-                                        aspectRatio={1}
-                                        minCropBoxHeight={300}
-                                        minCropBoxWidth={300}
-                                        background={true}
-                                        responsive={true}
-                                        autoCropArea={1}
-                                        guides={false}
-                                        data={{ height: 300, width: 300 }}
-                                    />
-
-                                    {/* produit phare image erreur */}
-                                    <div className='error_container'>
-                                        {(prodPhare2DimensionError && prodPhare2Dimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${prodPhare2Dimension.width}x${prodPhare2Dimension.height}) au lieu de (300x300)`}</span>}
-                                        {prodPhare2TypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
-                                        {prodPhare2SizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
-                                    </div>
-
-                                    <div className='redimensionner_btn_container'>
-                                        <button className='redimensionner_btn' onClick={() => getCropData('prod_phare_2')}>Redimensionner</button>
-                                    </div>
-                                </div>
-                            }
-                            {/* redimensionner produit phare image (troisième image) */}
-                            {(prodPhare3DimensionError && !prodPhare3TypeError && !prodPhare3SizeError) &&
-                                <div className='redimensionner_container'>
-                                    <Cropper
-                                        ref={cropperRefprodPhare3}
-                                        style={{ height: 300, maxWidth: '100%', width: '100%', marginBottom: 15, }}
-                                        zoomTo={0}
-                                        src={prodPhareImg3}
-                                        viewMode={1}
-                                        cropBoxResizable={false}
-                                        initialAspectRatio={1}
-                                        aspectRatio={1}
-                                        minCropBoxHeight={300}
-                                        minCropBoxWidth={300}
-                                        background={true}
-                                        responsive={true}
-                                        autoCropArea={1}
-                                        guides={false}
-                                        data={{ height: 300, width: 300 }}
-                                    />
-
-                                    {/* produit phare image erreur */}
-                                    {(prodPhare3DimensionError && prodPhare3Dimension) &&
-                                        <div className='error_container'>
-                                            {(prodPhare3DimensionError && prodPhare3Dimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${prodPhare3Dimension.width}x${prodPhare3Dimension.height}) au lieu de (300x300)`}</span>}
-                                            {prodPhare3TypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
-                                            {prodPhare3SizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
-                                        </div>
-                                    }
-
-                                    <div className='redimensionner_btn_container'>
-                                        <button className='redimensionner_btn' onClick={() => getCropData('prod_phare_3')}>Redimensionner</button>
-                                    </div>
-                                </div>
-                            }
-                            {/* trois photos phares */}
-                            <div className='produit_phare_content_container'>
-                                <div className='produit_phare_content'>
-                                    {[1, 2, 3].map(nb => {
-                                        return (
-                                            // produit phare
-                                            <div key={nb} className='produit_phare'>
-                                                {/* choisir la photo */}
-                                                <div className='produit_phare_choose_img'>
-                                                    <span className='produit_phare_choose_img_size'>(300 x 300)</span>
-                                                    <label htmlFor={`prod_phare_${nb}`} className='produit_phare_choose_img_btn'>
-                                                        La {nb === 1 ? 'première' : nb === 2 ? 'deuxième' : 'troisième'} photo
-                                                        <input type='file' name={`prod_phare_${nb}`} id={`prod_phare_${nb}`} accept='image/*' onChange={(e) => handleChooseImg(e, nb === 1 ? 'prod_phare_1' : nb === 2 ? 'prod_phare_2' : 'prod_phare_3')} style={{ display: 'none' }} />
-                                                    </label>
-                                                </div>
-                                                {/* format ou image choisie */}
-                                                <div className='format_img_container'>
-                                                    {nb === 1 ?
-                                                        (!prodPhareImg1.trim() && !cropDataProdPhare1) ?
-                                                            <img src={`${api_file}/${marchand?.store.produits[0]}`} alt='produit_phare_image_1' style={{ objectFit: 'cover' }} className='format_img' /> :
-                                                            <img src={prodPhareImg1 ? prodPhareImg1 : cropDataProdPhare1 && cropDataProdPhare1} alt='produit_phare_image_1' style={{ objectFit: prodPhareImg1 ? 'contain' : cropDataProdPhare1 ? 'cover' : 'initial' }} className='format_img' />
-                                                        : nb === 2 ?
-                                                            (!prodPhareImg2.trim() && !cropDataProdPhare2) ?
-                                                                <img src={`${api_file}/${marchand?.store.produits[1]}`} alt='produit_phare_image_2' style={{ objectFit: 'cover' }} className='format_img' /> :
-                                                                <img src={prodPhareImg2 ? prodPhareImg2 : cropDataProdPhare2 && cropDataProdPhare2} alt='produit_phare_image_2' style={{ objectFit: prodPhareImg2 ? 'contain' : cropDataProdPhare2 ? 'cover' : 'initial' }} className='format_img' />
-                                                            : nb === 3 && (!prodPhareImg3.trim() && !cropDataProdPhare3) ?
-                                                                <img src={`${api_file}/${marchand?.store.produits[2]}`} alt='produit_phare_image_3' style={{ objectFit: 'cover' }} className='format_img' /> :
-                                                                <img src={prodPhareImg3 ? prodPhareImg3 : cropDataProdPhare3 && cropDataProdPhare3} alt='produit_phare_image_3' style={{ objectFit: prodPhareImg3 ? 'contain' : cropDataProdPhare3 ? 'cover' : 'initial' }} className='format_img' />
-                                                    }
-                                                </div>
-                                                {/* erreur des images des produits phares */}
-                                                <div className='error_container'>
-                                                    {(nb === 1 && err?.product1) && <span className='error'>{err.product1}</span>}
-                                                    {(nb === 2 && err?.product2) && <span className='error'>{err.product2}</span>}
-                                                    {(nb === 3 && err?.product3) && <span className='error'>{err.product3}</span>}
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-
-                        </div>
-                        {/* bouton valider */}
-                        <div className='submit_btn_container'>
-                            <button className='submit_btn'>Valider</button>
-                        </div>
-                    </form>
+            <div className='modification_container'>
+                {/* header de la page modification */}
+                <div className='modification_header_container'>
+                    <h1 className='modification_header_title'>Modification de vos informations</h1>
+                    <p className='modification_header_text'>Veuillez saisir vos nouvelles informations</p>
                 </div>
-            }
+
+                {/* information necessaire sur la boutique */}
+                <form className='about_shop_container' onSubmit={handleSubmit}>
+                    {/* information de la boutique */}
+                    <div className='about_shop'>
+                        <h1 className='about_shop_title'>Information de la boutique</h1>
+                        <div className='about_shop_content_container'>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_name' className='_label'>Marchand/Nom de la boutique en ligne *</label>
+                                <input type='text' name='shop_name' id='shop_name' placeholder='ex: Boutique' value={dataStore.name} onChange={e => setDataStore({ ...dataStore, name: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.store?.name && <span className='error'>{err.store.name}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_email' className='_label'>Email de la boutique *</label>
+                                <input type='text' name='shop_email' id='shop_email' placeholder='ex: exemple@domaine.com' value={dataStore.email} onChange={e => setDataStore({ ...dataStore, email: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.store?.email && <span className='error'>{err.store.email}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_site_url' className='_label'>URL du site web *</label>
+                                <input type='text' name='shop_site_url' id='shop_site_url' placeholder='ex: https://nomdudomaine.com' value={dataStore.url} onChange={e => setDataStore({ ...dataStore, url: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.store?.url && <span className='error'>{err.store.url}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_adresse' className='_label'>Adresse de la boutique *</label>
+                                <input type='text' name='shop_adresse' id='shop_adresse' placeholder='ex: Kalaban coura' value={dataStore.adresse} onChange={e => setDataStore({ ...dataStore, adresse: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.store?.adresse && <span className='error'>{err.store.adresse}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_region' className='_label'>Région *</label>
+                                <select name='shop_region' id='shop_region' value={dataStore.region} onChange={e => setDataStore({ ...dataStore, region: e.target.value })} className='_select_container'>
+                                    <option value='' className='_select'>Région</option>
+                                    {regions.map(region => <option key={region.id} value={region.name} className='_select'>{region.name}</option>)}
+                                </select>
+                                <div className='error_container'>
+                                    {err?.store?.region && <span className='error'>{err.store.region}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_num_tel' className='_label'>Numéro de téléphone de la boutique *</label>
+                                <div className='indicatif_tel_container'>
+                                    <select name='shop_tel_indicatif' className='_select_container' disabled>
+                                        <option value='+223' className='_select'>+223</option>
+                                    </select>
+                                    <input type='tel' name='shop_num_tel' id='shop_num_tel' placeholder='ex: 20244715' value={dataStore.telephone} onChange={e => setDataStore({ ...dataStore, telephone: e.target.value })} className='_input' />
+                                </div>
+                                <div className='error_container'>
+                                    {err?.store?.telephone && <span className='error'>{err.store.telephone}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_description' className='_label'>Description de la boutique *</label>
+                                <textarea name='shop_description' id='shop_description' placeholder='Description de la boutique *' value={dataStore.description} onChange={e => setDataStore({ ...dataStore, description: e.target.value })} className='_textarea'></textarea>
+                                <div className='error_container'>
+                                    {err?.store?.description && <span className='error'>{err.store.description}</span>}
+                                </div>
+                            </div>
+                            <div className='switch_container_'>
+                                <span className='switch_title'>Êtes-vous un marchand Vitepay ?</span>
+                                <Switch editable active={marchandVitepay} setActive={setMarchandVitepay} />
+                            </div>
+                            <div className='switch_container_'>
+                                <span className='switch_title'>Le site peut-il s'afficher sur daneela ?</span>
+                                <Switch editable active={frame} setActive={setFrame} />
+                            </div>
+                        </div>
+                    </div>
+                    {/* lien des reseaux sociaux */}
+                    <div className='about_shop'>
+                        <h1 className='about_shop_title'>Liens des réseaux sociaux</h1>
+                        <div className='about_shop_content_container'>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_facebook_url' className='_label'>Facebook</label>
+                                <input type='text' name='shop_facebook_url' id='shop_facebook_url' placeholder='Lien du compte facebook' value={dataNetwork.facebook} onChange={e => setDataNetwork({ ...dataNetwork, facebook: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.network?.facebook && <span className='error'>{err.network.facebook}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_instagram_url' className='_label'>Instagram</label>
+                                <input type='text' name='shop_instagram_url' id='shop_instagram_url' placeholder='Lien du compte instagram' value={dataNetwork.instagram} onChange={e => setDataNetwork({ ...dataNetwork, instagram: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.network?.instagram && <span className='error'>{err.network.instagram}</span>}
+                                </div>
+                            </div>
+                            <div className='label_input_error_container'>
+                                <label htmlFor='shop_linkedin_url' className='_label'>Linkedin</label>
+                                <input type='text' name='shop_linkedin_url' id='shop_linkedin_url' placeholder='Lien du compte linkedin' value={dataNetwork.linkedin} onChange={e => setDataNetwork({ ...dataNetwork, linkedin: e.target.value })} className='_input' />
+                                <div className='error_container'>
+                                    {err?.network?.linkedin && <span className='error'>{err.network.linkedin}</span>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* catégories et sous catégories */}
+                    <div className='about_shop'>
+                        <h1 className='about_shop_title'>Catégories et sous catégories</h1>
+                        <div className='about_shop_content_container'>
+                            {/* categories */}
+                            <div className='category_container'>
+                                <h2 className='category_title'>Catégories</h2>
+                                <div className='category_content_container'>
+                                    {categories.map(category => <CategoryCard key={category.id} name={category.name} editable categories={categories_} setCategories={setCategories_} sousCategories={sousCategories_} setSousCategories={setSousCategories_} />)}
+                                </div>
+                                <div className='error_container'>
+                                    {err?.tag?.categories && <span className='error'>{err.tag.categories}</span>}
+                                </div>
+                            </div>
+
+                            {/* sous categories */}
+                            <div className='category_container'>
+                                <h2 className='category_title'>Sous catégories</h2>
+                            </div>
+                            {categories.map(category => <SubCategoryCard key={category.id} category={category} active={categories_.includes(category.name)} sousCategories={sousCategories_} setSousCategories={setSousCategories_} />)}
+                        </div>
+                    </div>
+                    {/* fourchette de prix */}
+                    <div className='f_serv_sup_container'>
+                        <h1 className='f_serv_sup_title'>Fouchette de prix</h1>
+                        <div className='f_serv_sup_content_container'>
+                            {/* min */}
+                            <div className='fourchette'>
+                                <label htmlFor='min' className='fourchette_label'>Min *</label>
+                                <select name='min' id='min' value={dataTag.prixMinimum} onChange={e => setDataTag({ ...dataTag, prixMinimum: parseInt(e.target.value, 10) })} className='fourchette_select_container'>
+                                    <option value={100}>100</option>
+                                    <option value={1000}>1.000</option>
+                                    <option value={25000}>25.000</option>
+                                </select>
+                            </div>
+                            {/* max */}
+                            <div className='fourchette'>
+                                <label htmlFor='max' className='fourchette_label'>Max *</label>
+                                <select name='max' id='max' value={dataTag.prixMaximum} onChange={e => setDataTag({ ...dataTag, prixMaximum: parseInt(e.target.value, 10) })} className='fourchette_select_container'>
+                                    <option value={25000}>25.000</option>
+                                    <option value={30000}>30.000</option>
+                                    <option value={100000}>100.000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    {/* services supplementaires */}
+                    <div className='f_serv_sup_container'>
+                        <h1 className='f_serv_sup_title'>Services supplementaires</h1>
+                        <div className='f_serv_sup_content_container'>
+                            {/* livraison */}
+                            <div className='liv_serv_ap_vente_container'>
+                                <h2 className='liv_serv_ap_vente_title'>Livraison :</h2>
+                                <div className='liv_serv_ap_vente_content_container'>
+                                    <div className='liv_serv_ap_vente_content'>
+                                        <label htmlFor='non_disponible' className='liv_serv_ap_vente_content_title'>Non disponible</label>
+                                        <input type='radio' name='livraison' id='non_disponible' checked={dataStore.livraison === 'Non disponible'} value='Non disponible' onChange={e => setDataStore({ ...dataStore, livraison: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
+                                    </div>
+                                    <div className='liv_serv_ap_vente_content'>
+                                        <label htmlFor='gratuite' className='liv_serv_ap_vente_content_title'>Gratuite</label>
+                                        <input type='radio' name='livraison' id='gratuite' checked={dataStore.livraison === 'Gratuite'} value='Gratuite' onChange={e => setDataStore({ ...dataStore, livraison: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
+                                    </div>
+                                    <div className='liv_serv_ap_vente_content'>
+                                        <label htmlFor='payante' className='liv_serv_ap_vente_content_title'>Payante</label>
+                                        <input type='radio' name='livraison' id='payante' checked={dataStore.livraison === 'Payante'} value='Payante' onChange={e => setDataStore({ ...dataStore, livraison: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* service après vente */}
+                            <div className='liv_serv_ap_vente_container'>
+                                <h2 className='liv_serv_ap_vente_title'>Services après vente :</h2>
+                                <div className='liv_serv_ap_vente_content_container'>
+                                    <div className='liv_serv_ap_vente_content'>
+                                        <label htmlFor='oui' className='liv_serv_ap_vente_content_title'>Oui</label>
+                                        <input type='radio' name='serv_ap_vente' id='oui' value='oui' checked={dataStore.serviceApresVente === 'oui'} onChange={e => setDataStore({ ...dataStore, serviceApresVente: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
+                                    </div>
+                                    <div className='liv_serv_ap_vente_content'>
+                                        <label htmlFor='non' className='liv_serv_ap_vente_content_title'>Non</label>
+                                        <input type='radio' name='serv_ap_vente' id='non' checked={dataStore.serviceApresVente === 'non'} value='non' onChange={e => setDataStore({ ...dataStore, serviceApresVente: e.target.value })} className='liv_serv_ap_vente_content_radio_btn' />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* logo et image de couverture */}
+                    <div className='logo_bg_img_container'>
+                        {/* importation du logo */}
+                        <div className='choose_photo_container'>
+                            <span className='choose_photo_text'>Veuillez importer le logo</span>
+                            <span className='choose_photo_size'>(100 x 100)</span>
+                            <label htmlFor='logo' className='choose_photo_btn'>
+                                Choisir le logo
+                                <input type='file' name='logo' id='logo' accept='image/*' onChange={(e) => handleChooseImg(e, 'logo')} style={{ display: 'none' }} />
+                            </label>
+                        </div>
+                        {/* redimensionner le logo */}
+                        {(logoDimensionError && !logoTypeError && !logoSizeError) &&
+                            <div className='redimensionner_container'>
+                                <Cropper
+                                    ref={cropperRefLogo}
+                                    style={{ height: 100, maxWidth: '100%', width: '100%', marginBottom: 15, }}
+                                    zoomTo={0}
+                                    src={logoImg}
+                                    viewMode={1}
+                                    cropBoxResizable={false}
+                                    initialAspectRatio={1}
+                                    aspectRatio={1}
+                                    minCropBoxHeight={100}
+                                    minCropBoxWidth={100}
+                                    background={true}
+                                    responsive={true}
+                                    autoCropArea={1}
+                                    guides={false}
+                                    data={{ height: 100, width: 100 }}
+                                />
+
+                                <div className='redimensionner_btn_container'>
+                                    <button className='redimensionner_btn' onClick={() => getCropData('logo')}>Redimensionner</button>
+                                </div>
+                            </div>
+                        }
+                        {/* logo */}
+                        <div className='logo_bg_img'>
+                            <div className='logo_bg_img_content'>
+                                {(!logoImg.trim() && !cropDataLogo.trim()) ?
+                                    <img src={`${api_file}/${marchand?.store.logo}`} alt='logo' style={{ objectFit: logoImg ? 'contain' : cropDataLogo ? 'cover' : 'initial' }} className='logo_bg_img_content_img' /> :
+                                    <img src={logoImg ? logoImg : cropDataLogo && cropDataLogo} alt='logo' style={{ objectFit: logoImg ? 'contain' : cropDataLogo ? 'cover' : 'initial' }} className='logo_bg_img_content_img' />}
+                            </div>
+                        </div>
+                        {/* logo erreur */}
+                        <div className='error_container'>
+                            {(logoDimensionError && logoDimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${logoDimension.width}x${logoDimension.height}) au lieu de (100x100)`}</span>}
+                            {logoTypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
+                            {logoSizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
+                            {err?.logo && <span className='error'>{err.logo}</span>}
+                        </div>
+                        {/* importation de la photo de couverture */}
+                        <div className='choose_photo_container'>
+                            <span className='choose_photo_text'>Veuillez importer la photo de couverture</span>
+                            <span className='choose_photo_size'>(800 x 400)</span>
+                            <label htmlFor='couverture' className='choose_photo_btn'>
+                                Choisir la photo de couverture
+                                <input type='file' name='couverture' id='couverture' accept='image/*' onChange={(e) => handleChooseImg(e, 'couverture')} style={{ display: 'none' }} />
+                            </label>
+                        </div>
+                        {/* redimensionner la photo de couverture */}
+                        {(couvertureDimensionError && !couvertureTypeError && !couvertureSizeError) &&
+                            <div className='redimensionner_container'>
+                                <Cropper
+                                    ref={cropperRefCouverture}
+                                    style={{ height: 400, maxWidth: '100%', width: '100%', marginBottom: 15, }}
+                                    zoomTo={0}
+                                    src={couvertureImg}
+                                    viewMode={1}
+                                    cropBoxResizable={false}
+                                    initialAspectRatio={16 / 8}
+                                    aspectRatio={16 / 8}
+                                    minCropBoxHeight={400}
+                                    minCropBoxWidth={800}
+                                    background={true}
+                                    responsive={true}
+                                    autoCropArea={0.7}
+                                    guides={false}
+                                    data={{ height: 400, width: 800 }}
+                                />
+
+                                <div className='redimensionner_btn_container'>
+                                    <button className='redimensionner_btn' onClick={() => getCropData('couverture')}>Redimensionner</button>
+                                </div>
+                            </div>
+                        }
+                        {/* couverture */}
+                        <div className='logo_bg_img'>
+                            <div className='logo_bg_img_content bg'>
+                                {(!couvertureImg.trim() && !cropDataCouverture.trim()) ?
+                                    <img src={`${api_file}/${marchand?.store.couverture}`} alt='logo' style={{ objectFit: logoImg ? 'contain' : cropDataLogo ? 'cover' : 'initial' }} className='logo_bg_img_content_img' /> :
+                                    <img src={couvertureImg ? couvertureImg : cropDataCouverture && cropDataCouverture} alt='photo_de_couverture' style={{ objectFit: couvertureImg ? 'contain' : cropDataCouverture ? 'cover' : 'initial' }} className='logo_bg_img_content_img' />
+                                }
+                            </div>
+                        </div>
+                        {/* couverture erreur */}
+                        <div className='error_container'>
+                            {(couvertureDimensionError && couvertureDimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${couvertureDimension.width}x${couvertureDimension.height}) au lieu de (800x400)`}</span>}
+                            {couvertureTypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
+                            {couvertureSizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 1 Mo)</span>}
+                            {err?.cover && <span className='error'>{err.cover}</span>}
+                        </div>
+                    </div>
+                    {/* partie produit phare */}
+                    <div className='produit_phare_container'>
+                        {/* phrase d'importation des 3 photos du produit phare */}
+                        <div className='choose_photo_container'>
+                            <span className='choose_photo_text'>Veuillez importer 3 photos pour vos produits phares</span>
+                        </div>
+                        {/* redimensionner produit phare image (première image) */}
+                        {(prodPhare1DimensionError && !prodPhare1TypeError && !prodPhare1SizeError) &&
+                            <div className='redimensionner_container'>
+                                <Cropper
+                                    ref={cropperRefprodPhare1}
+                                    style={{ height: 300, maxWidth: '100%', width: '100%', marginBottom: 15, }}
+                                    zoomTo={0}
+                                    src={prodPhareImg1}
+                                    viewMode={1}
+                                    cropBoxResizable={false}
+                                    initialAspectRatio={1}
+                                    aspectRatio={1}
+                                    minCropBoxHeight={300}
+                                    minCropBoxWidth={300}
+                                    background={true}
+                                    responsive={true}
+                                    autoCropArea={1}
+                                    guides={false}
+                                    data={{ height: 300, width: 300 }}
+                                />
+
+                                {/* produit phare image erreur */}
+                                <div className='error_container'>
+                                    {(prodPhare1DimensionError && prodPhare1Dimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${prodPhare1Dimension.width}x${prodPhare1Dimension.height}) au lieu de (300x300)`}</span>}
+                                    {prodPhare1TypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
+                                    {prodPhare1SizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
+                                </div>
+
+                                <div className='redimensionner_btn_container'>
+                                    <button className='redimensionner_btn' onClick={() => getCropData('prod_phare_1')}>Redimensionner</button>
+                                </div>
+                            </div>
+                        }
+                        {/* redimensionner produit phare image (deuxième image) */}
+                        {(prodPhare2DimensionError && !prodPhare2TypeError && !prodPhare2SizeError) &&
+                            <div className='redimensionner_container'>
+                                <Cropper
+                                    ref={cropperRefprodPhare2}
+                                    style={{ height: 300, maxWidth: '100%', width: '100%', marginBottom: 15, }}
+                                    zoomTo={0}
+                                    src={prodPhareImg2}
+                                    viewMode={1}
+                                    cropBoxResizable={false}
+                                    initialAspectRatio={1}
+                                    aspectRatio={1}
+                                    minCropBoxHeight={300}
+                                    minCropBoxWidth={300}
+                                    background={true}
+                                    responsive={true}
+                                    autoCropArea={1}
+                                    guides={false}
+                                    data={{ height: 300, width: 300 }}
+                                />
+
+                                {/* produit phare image erreur */}
+                                <div className='error_container'>
+                                    {(prodPhare2DimensionError && prodPhare2Dimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${prodPhare2Dimension.width}x${prodPhare2Dimension.height}) au lieu de (300x300)`}</span>}
+                                    {prodPhare2TypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
+                                    {prodPhare2SizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
+                                </div>
+
+                                <div className='redimensionner_btn_container'>
+                                    <button className='redimensionner_btn' onClick={() => getCropData('prod_phare_2')}>Redimensionner</button>
+                                </div>
+                            </div>
+                        }
+                        {/* redimensionner produit phare image (troisième image) */}
+                        {(prodPhare3DimensionError && !prodPhare3TypeError && !prodPhare3SizeError) &&
+                            <div className='redimensionner_container'>
+                                <Cropper
+                                    ref={cropperRefprodPhare3}
+                                    style={{ height: 300, maxWidth: '100%', width: '100%', marginBottom: 15, }}
+                                    zoomTo={0}
+                                    src={prodPhareImg3}
+                                    viewMode={1}
+                                    cropBoxResizable={false}
+                                    initialAspectRatio={1}
+                                    aspectRatio={1}
+                                    minCropBoxHeight={300}
+                                    minCropBoxWidth={300}
+                                    background={true}
+                                    responsive={true}
+                                    autoCropArea={1}
+                                    guides={false}
+                                    data={{ height: 300, width: 300 }}
+                                />
+
+                                {/* produit phare image erreur */}
+                                {(prodPhare3DimensionError && prodPhare3Dimension) &&
+                                    <div className='error_container'>
+                                        {(prodPhare3DimensionError && prodPhare3Dimension) && <span className='error'>{`*Le format du fichier n'est pas valide, votre fichier est de (${prodPhare3Dimension.width}x${prodPhare3Dimension.height}) au lieu de (300x300)`}</span>}
+                                        {prodPhare3TypeError && <span className='error'>Le type du fichier selectionné n'est pas valide. Type valide (png, jpg, jpeg)</span>}
+                                        {prodPhare3SizeError && <span className='error'>Le poids du fichier selectionné n'est pas valide. Taille valide (au plus: 512 Ko)</span>}
+                                    </div>
+                                }
+
+                                <div className='redimensionner_btn_container'>
+                                    <button className='redimensionner_btn' onClick={() => getCropData('prod_phare_3')}>Redimensionner</button>
+                                </div>
+                            </div>
+                        }
+                        {/* trois photos phares */}
+                        <div className='produit_phare_content_container'>
+                            <div className='produit_phare_content'>
+                                {[1, 2, 3].map(nb => {
+                                    return (
+                                        // produit phare
+                                        <div key={nb} className='produit_phare'>
+                                            {/* choisir la photo */}
+                                            <div className='produit_phare_choose_img'>
+                                                <span className='produit_phare_choose_img_size'>(300 x 300)</span>
+                                                <label htmlFor={`prod_phare_${nb}`} className='produit_phare_choose_img_btn'>
+                                                    La {nb === 1 ? 'première' : nb === 2 ? 'deuxième' : 'troisième'} photo
+                                                    <input type='file' name={`prod_phare_${nb}`} id={`prod_phare_${nb}`} accept='image/*' onChange={(e) => handleChooseImg(e, nb === 1 ? 'prod_phare_1' : nb === 2 ? 'prod_phare_2' : 'prod_phare_3')} style={{ display: 'none' }} />
+                                                </label>
+                                            </div>
+                                            {/* format ou image choisie */}
+                                            <div className='format_img_container'>
+                                                {nb === 1 ?
+                                                    (!prodPhareImg1.trim() && !cropDataProdPhare1) ?
+                                                        <img src={`${api_file}/${marchand?.store.produits[0]}`} alt='produit_phare_image_1' style={{ objectFit: 'cover' }} className='format_img' /> :
+                                                        <img src={prodPhareImg1 ? prodPhareImg1 : cropDataProdPhare1 && cropDataProdPhare1} alt='produit_phare_image_1' style={{ objectFit: prodPhareImg1 ? 'contain' : cropDataProdPhare1 ? 'cover' : 'initial' }} className='format_img' />
+                                                    : nb === 2 ?
+                                                        (!prodPhareImg2.trim() && !cropDataProdPhare2) ?
+                                                            <img src={`${api_file}/${marchand?.store.produits[1]}`} alt='produit_phare_image_2' style={{ objectFit: 'cover' }} className='format_img' /> :
+                                                            <img src={prodPhareImg2 ? prodPhareImg2 : cropDataProdPhare2 && cropDataProdPhare2} alt='produit_phare_image_2' style={{ objectFit: prodPhareImg2 ? 'contain' : cropDataProdPhare2 ? 'cover' : 'initial' }} className='format_img' />
+                                                        : nb === 3 && (!prodPhareImg3.trim() && !cropDataProdPhare3) ?
+                                                            <img src={`${api_file}/${marchand?.store.produits[2]}`} alt='produit_phare_image_3' style={{ objectFit: 'cover' }} className='format_img' /> :
+                                                            <img src={prodPhareImg3 ? prodPhareImg3 : cropDataProdPhare3 && cropDataProdPhare3} alt='produit_phare_image_3' style={{ objectFit: prodPhareImg3 ? 'contain' : cropDataProdPhare3 ? 'cover' : 'initial' }} className='format_img' />
+                                                }
+                                            </div>
+                                            {/* erreur des images des produits phares */}
+                                            <div className='error_container'>
+                                                {(nb === 1 && err?.product1) && <span className='error'>{err.product1}</span>}
+                                                {(nb === 2 && err?.product2) && <span className='error'>{err.product2}</span>}
+                                                {(nb === 3 && err?.product3) && <span className='error'>{err.product3}</span>}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                    </div>
+                    {/* bouton valider */}
+                    <div className='submit_btn_container'>
+                        <button className='submit_btn'>Valider</button>
+                    </div>
+                </form>
+            </div>
         </PageContainer>
     )
 }

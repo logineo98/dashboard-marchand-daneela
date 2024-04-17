@@ -1,23 +1,30 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // my importations
-import PageContainer from '../components/common/layout/page_container/PageContainer'
 import { page_home } from '../utils/page_name'
 import { ROOT_REDUCER_TYPE } from '../redux/store'
-import { _getAllCertifications } from '../redux/actions/certification.action'
-import CertificationCard from '../components/card/home/CertificationCard'
 import Loading from '../components/common/loading/Loading'
-import { _getAllForfaits } from '../redux/actions/forfait.action'
 import ForfaitCard from '../components/card/home/ForfaitCard'
-import { _getAllPromotions } from '../redux/actions/promotion.action'
-import { _getAllModifications } from '../redux/actions/modification.action'
 import PromotionCard from '../components/card/home/PromotionCard'
+import { _getAllForfaits } from '../redux/actions/forfait.action'
+import { _getAllPromotions } from '../redux/actions/promotion.action'
 import ModificationCard from '../components/card/home/ModificationCard'
+import NotificationCard from '../components/card/home/NotificationCard'
+import CertificationCard from '../components/card/home/CertificationCard'
+import { _getAllModifications } from '../redux/actions/modification.action'
+import { _getAllNotificationsUnread } from '../redux/actions/notification.action'
+import { _getAllCertifications } from '../redux/actions/certification.action'
+import PageContainer from '../components/common/layout/page_container/PageContainer'
 // my icons
 import { AiFillCreditCard } from 'react-icons/ai'
 import { FaCertificate, FaGift } from 'react-icons/fa'
 import { MdEdit, MdNotifications } from 'react-icons/md'
 
+import TimeAgo from 'javascript-time-ago'
+import fr from 'javascript-time-ago/locale/fr'
+
+TimeAgo.addLocale(fr)
+TimeAgo.addDefaultLocale(fr)
 
 const Home = () => {
     const { marchand } = useSelector((state: ROOT_REDUCER_TYPE) => state.marchand)
@@ -25,6 +32,7 @@ const Home = () => {
     const { loadingCertification, allCertifications } = useSelector((state: ROOT_REDUCER_TYPE) => state.certification)
     const { loadingPromotion, allPromotions } = useSelector((state: ROOT_REDUCER_TYPE) => state.promotion)
     const { loadingForfait, allForfaits } = useSelector((state: ROOT_REDUCER_TYPE) => state.forfait)
+    const { loadingNotification, allNotifications } = useSelector((state: ROOT_REDUCER_TYPE) => state.notification)
     const dispatch = useDispatch<any>()
 
     useEffect(() => {
@@ -32,6 +40,7 @@ const Home = () => {
         marchand && dispatch(_getAllCertifications(marchand.store.id))
         marchand && dispatch(_getAllPromotions(marchand.store.id))
         marchand && dispatch(_getAllForfaits(marchand.store.id))
+        marchand && dispatch(_getAllNotificationsUnread(marchand.store.id))
     }, [dispatch, marchand])
 
     return (
@@ -122,22 +131,13 @@ const Home = () => {
                         <span className='notification_header_name'>Notification</span>
                     </div>
                     <div className='notification_content_container'>
-                        <div className='notification_content'>
-                            <span className='notification_content_name'>Modification d'information</span>
-                            <span className='notification_content_value'>4</span>
-                        </div>
-                        <div className='notification_content'>
-                            <span className='notification_content_name'>Certifications</span>
-                            <span className='notification_content_value'>10</span>
-                        </div>
-                        <div className='notification_content'>
-                            <span className='notification_content_name'>Promotions</span>
-                            <span className='notification_content_value'>8</span>
-                        </div>
-                        <div className='notification_content'>
-                            <span className='notification_content_name'>Forfaits</span>
-                            <span className='notification_content_value'>4</span>
-                        </div>
+                        {loadingNotification ?
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Loading />
+                            </div> :
+                            allNotifications.length === 0 ? <p style={{ fontSize: 12, textAlign: 'center', }}>Aucune notification non lue trouvée pour le moment.</p> :
+                                allNotifications.map(notif => notif.read ? null : <NotificationCard key={notif.id} notification={notif} />)
+                        }
                     </div>
                 </div>
             </div>

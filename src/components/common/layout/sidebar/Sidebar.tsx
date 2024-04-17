@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 // my importations
-
+import Menu from './Menu'
+import { menus } from '../../../../utils/menus'
 // my images
 import logo from '../../../../assets/images/logo.png'
-import { menus } from '../../../../utils/menus'
-import Menu from './Menu'
 
 const Sidebar = () => {
 

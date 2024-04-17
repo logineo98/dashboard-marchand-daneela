@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // my importations
 import RouterIndex from './pages/router'
+import { ROOT_REDUCER_TYPE } from './redux/store'
 import { isTokenExpired } from './utils/functions'
-import { _isAdminConnected } from './redux/actions/admin.action'
 import Loading from './components/common/loading/Loading'
 import { _getMarchand } from './redux/actions/marchand.action'
-import { ROOT_REDUCER_TYPE } from './redux/store'
+import { _isAdminConnected } from './redux/actions/admin.action'
 
 const App = () => {
   const { loadingAdmin } = useSelector((state: ROOT_REDUCER_TYPE) => state.admin)

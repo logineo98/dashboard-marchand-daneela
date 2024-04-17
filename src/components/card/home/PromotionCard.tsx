@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react'
 // my importations
 import Modal from '../../common/modal/Modal'
+import { api_file } from '../../../redux/constants'
 import { PROMOTION_TYPE } from '../../../redux/types'
 import { formatDate, formatDateJMA } from '../../../utils/functions'
-import { api_file } from '../../../redux/constants'
 // my icons
 import { IoEyeSharp } from 'react-icons/io5'
 

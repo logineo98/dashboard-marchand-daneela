@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 // my importations
 import Modal from '../../common/modal/Modal'
 import { MODIFICATION_TYPE } from '../../../redux/types'
-import { formatDate, formatDateJMA } from '../../../utils/functions'
+import { formatDate, } from '../../../utils/functions'
 // my icons
 import { IoEyeSharp } from 'react-icons/io5'
 

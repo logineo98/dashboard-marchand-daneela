@@ -1,17 +1,19 @@
+import axios from 'axios'
+import { toast } from 'react-toastify'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
 // my importations
-import AuthContainer from '../components/common/layout/auth/AuthContainer'
-import { auth } from '../redux/constants'
 import Loading from '../components/common/loading/Loading'
+import { GET_MARCHAND, auth, marchand } from '../redux/constants'
+import AuthContainer from '../components/common/layout/auth/AuthContainer'
 
 const Login = () => {
     const data = { email: '', password: '' }
 
     const [loginData, setLoginData] = useState(data)
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch<any>()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginData({ ...loginData, [e.target.id]: e.target.value })
@@ -28,7 +30,7 @@ const Login = () => {
             axios.post(auth, loginData)
                 .then(res => {
                     setLoading(false)
-                    console.log(res.data)
+
                     const deconnectionHour = new Date(new Date().getTime() + res.data.expireIn)
 
                     localStorage.setItem('accessToken', res.data.accessToken)
@@ -36,7 +38,19 @@ const Login = () => {
                     localStorage.setItem('email', res.data.email)
                     localStorage.setItem('expireIn', deconnectionHour.getTime().toString())
 
-                    window.location.href = '/'
+                    axios.get(`${marchand}/me`, { headers: { Authorization: `Bearer ${res.data.accessToken}` } })
+                        .then(res => {
+                            localStorage.setItem('marchand', JSON.stringify(res.data))
+
+                            dispatch({ type: GET_MARCHAND, payload: res.data })
+
+                            window.location.href = '/'
+                        })
+                        .catch(error => {
+                            // toast.error(error?.response?.data?.message)
+                            toast.error('Erreur survenue lors de la récupération du marchand. Veuillez réessayer.')
+                            setLoading(false)
+                        })
                 })
                 .catch(error => {
                     toast.error(error?.response?.data?.message)

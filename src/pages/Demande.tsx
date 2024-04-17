@@ -1,12 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 // my importations
-import PageContainer from '../components/common/layout/page_container/PageContainer'
 import { page_demande } from '../utils/page_name'
+import PageContainer from '../components/common/layout/page_container/PageContainer'
 // my icons
 import { MdEdit } from 'react-icons/md'
-import { FaCertificate, FaGift } from 'react-icons/fa'
 import { AiFillCreditCard } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { FaCertificate, FaGift } from 'react-icons/fa'
 
 const Demande = () => {
 
